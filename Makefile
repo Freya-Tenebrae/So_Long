@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/12 15:58:35 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/12 16:34:58 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ FOLDER=srcs
 
 NAME_LIBFT=libft
 LIBFT=$(addprefix ${INCLUDES}/, libft)
+MLX=mlx
 
 CC=gcc -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
@@ -33,6 +34,7 @@ all: $(NAME)
 bonus: $(NAME)
 
 $(NAME): $(OBJS)
+	make -C $(MLX)
 	make -C $(LIBFT) bonus
 	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
 
