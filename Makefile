@@ -9,12 +9,11 @@
 #    Updated: 2021/09/12 16:34:58 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 NAME=so_long
 NAME_MAC=so_long
 
 SRCS=$(addprefix ${FOLDER}/, ft_so_long.c)
-OBJS=$(SCS:.c=.o)
+OBJS=$(SRCS:.c=.o)
 
 INCLUDES=includes
 FOLDER=srcs
@@ -50,6 +49,11 @@ $(NAME): $(OBJS)
 #	make -C $(LIBFT) bonus
 #	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
 
+$(NAME_MAC): $(OBJS)
+	make -C $(MLX)
+	make -C $(LIBFT) bonus
+	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
+
 %.o: %.c
 #	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)
 	$(CC) -c $(CFLAGS) -o $@ $< -I $(INCLUDES)
@@ -65,3 +69,4 @@ fclean: clean
 re: fclean all
 
 re_bonus: fclean bonus
+
