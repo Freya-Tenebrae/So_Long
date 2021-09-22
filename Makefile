@@ -11,10 +11,10 @@
 # **************************************************************************** #
 
 NAME=so_long
+NAME_MAC=so_long
 
 SRCS=$(addprefix ${FOLDER}/, ft_so_long.c)
-
-OBJS=$(SRCS:.c=.o)
+OBJS=$(SCS:.c=.o)
 
 INCLUDES=includes
 FOLDER=srcs
@@ -25,21 +25,34 @@ MLX=mlx
 
 CC=gcc -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
-CMLXFLAGS_C=-Imlx -c
-CMLXFLAGS=-Lmlx -lmlx -framework OpenGL -framework AppKit
+#CMLXFLAGS=-lft -lmlx -lXext -lX11 -lm -lbds
+#CMLXFLAGS_MACOS=-Lmlx -lmlx -framework OpenGL -framework AppKit
+#CMLXFLAGS_C=-Imlx -c
 RM=rm -f
 
 all: $(NAME)
 
 bonus: $(NAME)
 
+#macos: $(NAME_MAC)
+
+#bonus_macos: $(NAME_MAC)
+
 $(NAME): $(OBJS)
 	make -C $(MLX)
 	make -C $(LIBFT) bonus
-	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
+#	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)/libft.a
+
+
+#$(NAME_MAC): $(OBJS)
+#	make -C $(MLX)
+#	make -C $(LIBFT) bonus
+#	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)
+#	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)
+	$(CC) -c $(CFLAGS) -o $@ $< -I $(INCLUDES)
 
 clean:
 	make clean -C $(LIBFT)
@@ -47,7 +60,7 @@ clean:
 
 fclean: clean
 	make fclean -C $(LIBFT)
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_MAC)
 
 re: fclean all
 
