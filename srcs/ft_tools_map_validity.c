@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_so_long.c                                       :+:      :+:    :+:   */
+/*   ft_tools_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,7 @@
 
 #include "../includes/ft_so_long.h"
 
-int	main(int argc, const char **argv)
+void	ft_check_map_validity(char ***map)
 {
-	char	**map;
-
-	if (argc != 2)
-		ft_error("incorect numbers of arguments");
-	ft_get_map(&map, argv[1]);
-	ft_check_map_validity(&map);
-	ft_free_map(&map);
+	(void) map;
 }
