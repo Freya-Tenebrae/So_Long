@@ -10,12 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
-NAME_MAC=so_long
+NAME_BONUS=so_long_bonus
+#NAME_MAC=so_long
+#NAME_MAC_BONUS=so_long_bonus
 
-SRCS=$(addprefix ${FOLDER}/, 	ft_so_long.c\
-								ft_tools_error.c\
-								ft_tools_map.c)
+SRCS=$(addprefix ${FOLDER}/, \
+	ft_so_long.c\
+	ft_tools_error.c\
+	ft_tools_map.c\
+	ft_tools_map_validity.c)
+SRCS_BOUNS=$(addprefix ${FOLDER}/, \
+	ft_so_long_bonus.c\
+	ft_tools_error.c\
+	ft_tools_map.c\
+	ft_tools_map_validity.c)
 OBJS=$(SRCS:.c=.o)
+OBJS_BONUS=$(SRCS_BOUNS:.c=.o)
 
 INCLUDES=includes
 FOLDER=srcs
@@ -35,7 +45,7 @@ RM=rm -f
 
 all: $(NAME)
 
-bonus: $(NAME)
+bonus: $(NAME_BONUS)
 
 #macos: $(NAME_MAC)
 
@@ -48,8 +58,20 @@ $(NAME): $(OBJS)
 #	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
 
+$(NAME_BONUS): $(OBJS_BONUS)
+#	make -C $(MLX)
+	make -C $(LIBFT) bonus
+	make -C $(GNL) bonus
+#	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
+
 
 #$(NAME_MAC): $(OBJS)
+#	make -C $(MLX)
+#	make -C $(LIBFT) bonus
+#	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
+
+#$(NAME_MAC): $(OBJS_BONUS)
 #	make -C $(MLX)
 #	make -C $(LIBFT) bonus
 #	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
