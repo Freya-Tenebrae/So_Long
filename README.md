@@ -27,7 +27,7 @@ for advenced So_Long :
 make bonus
 ```
 
-> advenced push_swap have some improvement, like outers wall, dynamic backgrounds, following player, new pickup (key), new obstacles (Door), and two types of ennemy.
+> advenced push_swap will have some improvement, like outers wall, dynamic backgrounds, following player, new pickup (key), new obstacles (Door), and two types of ennemy.
 
 ### Exemple of uses
 
@@ -51,10 +51,10 @@ exemple of uses
 
 ## To-Do
 
--[x] map parsing
--[ ] graphic part
--[ ] assets (tiles and sprite) founds
--[ ] ennemy IA / ennemy round
--[ ] movement count
--[ ] GUI
--[ ] Error management
+- [x] map parsing
+- [ ] graphic part
+- [ ] assets (tiles and sprite) founds
+- [ ] ennemy IA / ennemy round
+- [ ] movement count
+- [ ] GUI
+- [ ] Error management
