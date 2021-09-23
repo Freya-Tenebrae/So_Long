@@ -14,16 +14,16 @@
 
 static void	ft_check_map_validity_rectangle(const char **map)
 {
-	int	size_first_line;
+	int	width_map;
 	int	n_line;
 
-	size_first_line = (int)ft_strlen(map[0]);
-	if (size_first_line < 3)
+	width_map = (int)ft_strlen(map[0]);
+	if (width_map < 3)
 		ft_error("the map is too small");
 	n_line = 1;
 	while (map[n_line] != NULL)
 	{
-		if ((int)ft_strlen(map[n_line]) != size_first_line)
+		if ((int)ft_strlen(map[n_line]) != width_map)
 			ft_error("the map isn't rectangular");
 		n_line += 1;
 	}
@@ -33,7 +33,27 @@ static void	ft_check_map_validity_rectangle(const char **map)
 
 static void	ft_check_map_validity_souronding(const char **map)
 {
-	(void)map;
+	int	width_map;
+	int	n_line;
+	int	n_char;
+
+	width_map = (int)ft_strlen(map[0]);
+	n_line = 0;
+	while (map[n_line] != NULL)
+	{
+		n_char = 0;
+		while (map[n_line][n_char] != '\0')
+		{
+			if (n_line == 0 || map[n_line + 1] == NULL || n_char == 0 || \
+				n_char == width_map - 1)
+			{
+				if (map[n_line][n_char] != '1')
+					ft_error("the map isn't sourounded by wall");
+			}
+			n_char += 1;
+		}
+		n_line += 1;
+	}
 }
 
 static void	ft_check_map_validity_all_actor_are_valid(const char **map)
