@@ -1,0 +1,9 @@
+[submodule "includes/mlx"]
+	path = includes/mlx
+	url = https://github.com/42Paris/minilibx-linux.git
+[submodule "includes/gnl"]
+	path = includes/gnl
+	url = https://github.com/Freya-Tenebrae/Get_next_line.git
+[submodule "includes/libft"]
+	path = includes/libft
+	url = https://github.com/Freya-Tenebrae/libft.git
