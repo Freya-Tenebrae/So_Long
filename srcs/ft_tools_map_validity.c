@@ -75,7 +75,8 @@ static void	ft_check_map_validity_all_actor_are_valid(const char **map)
 	}
 }
 
-static int	ft_check_map_validity_actor_present(const char **map, const char *actor)
+static int	ft_check_map_validity_actor_present(const char **map, \
+												const char *actor)
 {
 	int	n_line;
 	int	n_char;

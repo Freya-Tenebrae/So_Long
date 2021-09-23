@@ -12,7 +12,7 @@
 
 #include "../includes/ft_so_long.h"
 
-static t_maps	*ft_init_maps()
+static t_maps	*ft_init_maps(void)
 {
 	t_maps	*maps;
 
