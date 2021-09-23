@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/12 16:34:58 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/23 11:44:25 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -33,7 +33,7 @@ FOLDER=srcs
 NAME_LIBFT=libft
 NAME_GNL=get_next_line
 LIBFT=$(addprefix ${INCLUDES}/, libft)
-GNL=$(addprefix ${INCLUDES}/, get_next_line)
+GNL=$(addprefix ${INCLUDES}/, gnl)
 MLX=mlx
 
 CC=gcc -g
