@@ -34,7 +34,7 @@ typedef struct s_maps
 int		main(int argc, const char **argv);
 void	ft_error(char *str);
 void	ft_get_map(char ***map, const char *path);
-void	ft_check_map_validity(char ***map);
+void	ft_check_map_validity(const char **map);
 void	ft_free_map(char ***map);
 /* ************************************************************************** */
 /*                                   TOOLS                                    */

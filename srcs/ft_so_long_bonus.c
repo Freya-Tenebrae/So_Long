@@ -38,7 +38,7 @@ int	main(int argc, const char **argv)
 	while (maps_ptr != NULL)
 	{
 		ft_get_map(&(maps_ptr->map), argv[1]);
-		ft_check_map_validity(&(maps_ptr->map));
+		ft_check_map_validity((const char **)maps_ptr->map);
 		ft_free_map(&(maps_ptr->map));
 		maps_ptr = maps_ptr->next;
 	}

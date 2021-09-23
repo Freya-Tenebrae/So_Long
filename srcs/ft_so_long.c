@@ -19,6 +19,6 @@ int	main(int argc, const char **argv)
 	if (argc != 2)
 		ft_error("incorect numbers of arguments");
 	ft_get_map(&map, argv[1]);
-	ft_check_map_validity(&map);
+	ft_check_map_validity((const char **)map);
 	ft_free_map(&map);
 }

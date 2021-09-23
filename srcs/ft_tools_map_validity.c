@@ -12,18 +12,18 @@
 
 #include "../includes/ft_so_long.h"
 
-static void	ft_check_map_validity_rectangle(char ***map)
+static void	ft_check_map_validity_rectangle(const char **map)
 {
 	int	size_first_line;
 	int	n_line;
 
-	size_first_line = (int)ft_strlen((*map)[0]);
+	size_first_line = (int)ft_strlen(map[0]);
 	if (size_first_line < 3)
 		ft_error("the map is too small");
 	n_line = 1;
-	while ((*map)[n_line] != NULL)
+	while (map[n_line] != NULL)
 	{
-		if ((int)ft_strlen((*map)[n_line]) != size_first_line)
+		if ((int)ft_strlen(map[n_line]) != size_first_line)
 			ft_error("the map isn't rectangular");
 		n_line += 1;
 	}
@@ -31,27 +31,61 @@ static void	ft_check_map_validity_rectangle(char ***map)
 		ft_error("the map is too small");
 }
 
-static void	ft_check_map_validity_souronding(char ***map)
+static void	ft_check_map_validity_souronding(const char **map)
 {
 	(void)map;
 }
 
-static void	ft_check_map_validity_all_actor_are_valid(char ***map)
+static void	ft_check_map_validity_all_actor_are_valid(const char **map)
 {
-	(void)map;
+	int	n_line;
+	int	n_char;
+
+	n_line = 0;
+	while (map[n_line] != NULL)
+	{
+		n_char = 0;
+		while (map[n_line][n_char] != '\0')
+		{
+			if (ft_strchr("01PCE", map[n_line][n_char]) == NULL)
+				ft_error("an actor (pickup, exit, player, ...) isn't valid");
+			n_char += 1;
+		}
+		n_line += 1;
+	}
 }
 
-static void	ft_check_map_validity_all_actor_present_once(char ***map)
+static int	ft_check_map_validity_actor_present(const char **map, const char *actor)
 {
-	(void)map;
+	int	n_line;
+	int	n_char;
+
+	n_line = 0;
+	while (map[n_line] != NULL)
+	{
+		n_char = 0;
+		while (map[n_line][n_char] != '\0')
+		{
+			if (ft_strchr(actor, map[n_line][n_char]) != NULL)
+				return (0);
+			n_char += 1;
+		}
+		n_line += 1;
+	}
+	return (-1);
 }
 
-void	ft_check_map_validity(char ***map)
+void	ft_check_map_validity(const char **map)
 {
-	if (*map == NULL)
+	if (map == NULL)
 		ft_error("the map is empty");
 	ft_check_map_validity_rectangle(map);
 	ft_check_map_validity_souronding(map);
 	ft_check_map_validity_all_actor_are_valid(map);
-	ft_check_map_validity_all_actor_present_once(map);
+	if (ft_check_map_validity_actor_present(map, "P") != 0)
+		ft_error("a mendatory actor 'Player' isn't present");
+	if (ft_check_map_validity_actor_present(map, "E") != 0)
+		ft_error("a mendatory actor 'Exit' isn't present");
+	if (ft_check_map_validity_actor_present(map, "C") != 0)
+		ft_error("a mendatory actor 'Pickup' isn't present");
 }
