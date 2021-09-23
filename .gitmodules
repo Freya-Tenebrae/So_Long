@@ -1,9 +1,0 @@
-[submodule "mlx"]
-	path = mlx
-	url = https://github.com/42Paris/minilibx-linux.git
-[submodule "includes/libft"]
-	path = includes/libft
-	url = https://github.com/Freya-Tenebrae/libft.git
-[submodule "includes/get_next_line"]
-	path = includes/get_next_line
-	url = https://github.com/Freya-Tenebrae/Get_next_line.git
