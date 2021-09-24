@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/24 08:27:36 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/09/24 09:20:17 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, const char **argv)
 
 	if (argc != 2)
 		ft_error("incorect numbers of arguments");
+	map = NULL;
 	ft_get_map(&map, argv[1]);
 	ft_check_map_validity((const char **)map);
 	ft_free_map(&map);
