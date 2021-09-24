@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/24 09:09:55 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/09/24 09:15:46 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, const char **argv)
 	while (maps_ptr != NULL)
 	{
 		ft_get_map(&(maps_ptr->map), argv[1]);
-		ft_check_map_validity_bonus((const char **)maps_ptr->map);
+		ft_check_map_validity((const char **)maps_ptr->map);
 		maps_ptr = maps_ptr->next;
 	}
 	ft_free_maps(&maps);
