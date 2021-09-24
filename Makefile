@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/23 11:49:54 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/24 08:47:38 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -50,6 +50,9 @@ bonus: $(NAME_BONUS)
 #macos: $(NAME_MAC)
 
 #bonus_macos: $(NAME_MAC)
+
+basic_adventure: 
+	bash launch_basic_adventure.sh
 
 $(NAME): $(OBJS)
 #	make -C $(MLX)
