@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/24 09:14:47 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:28:04 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 /* ************************************************************************** */
 /*                                  INCLUDES                                  */
 /* ************************************************************************** */
-// # include <mlx.h>
+// # include "mlx/mlx.h"
+// # include "mlx/mlx_int.h"
 # include "libft/libft.h"
 # include "gnl/get_next_line_bonus.h"
 
@@ -39,5 +40,9 @@ void	ft_check_map_validity(const char **map);
 void	ft_error(char *str);
 void	ft_get_map(char ***map, const char *path);
 void	ft_free_map(char ***map);
-
+/* ************************************************************************** */
+/*                                   BONUS                                    */
+/* ************************************************************************** */
+t_maps	*ft_init_maps(void);
+void	ft_free_maps(t_maps **maps);
 #endif

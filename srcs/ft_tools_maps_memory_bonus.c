@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_so_long.c                                       :+:      :+:    :+:   */
+/*   ft_tools_maps_memory_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/27 11:28:23 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:00:44 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-int	main(int argc, const char **argv)
+t_maps	*ft_init_maps(void)
 {
-	char	**map;
+	t_maps	*maps;
 
-	if (argc != 2)
-		ft_error("incorect numbers of arguments");
-	map = NULL;
-	ft_get_map(&map, argv[1]);
-	ft_check_map_validity((const char **)map);
+	maps = malloc(sizeof(t_maps));
+	if (!maps)
+		return (NULL);
+	maps->map = NULL;
+	maps->next = NULL;
+	return (maps);
+}
 
-	ft_free_map(&map);
+void	ft_free_maps(t_maps **maps)
+{
+	t_maps	*maps_ptr;
+
+	maps_ptr = *maps;
+	while (maps_ptr != NULL)
+	{
+		ft_free_map(&(maps_ptr->map));
+		maps_ptr = maps_ptr->next;
+		free(*maps);
+		*maps = maps_ptr;
+	}	
 }

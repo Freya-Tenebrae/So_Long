@@ -6,12 +6,12 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/24 09:10:09 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/27 11:27:51 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
 NAME_BONUS=so_long_bonus
-#NAME_MAC=so_long
+NAME_MAC=so_long_mac
 #NAME_MAC_BONUS=so_long_bonus
 
 SRCS=$(addprefix ${FOLDER}/, \
@@ -23,7 +23,8 @@ SRCS_BOUNS=$(addprefix ${FOLDER}/, \
 	ft_so_long_bonus.c\
 	ft_tools_error.c\
 	ft_tools_map.c\
-	ft_tools_map_validity_bonus.c)
+	ft_tools_map_validity_bonus.c\
+	ft_tools_maps_memory_bonus.c)
 OBJS=$(SRCS:.c=.o)
 OBJS_BONUS=$(SRCS_BOUNS:.c=.o)
 
@@ -39,7 +40,7 @@ MLX=$(addprefix ${INCLUDES}/, mlx)
 CC=gcc -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
 #CMLXFLAGS=-lft -lmlx -lXext -lX11 -lm -lbds
-#CMLXFLAGS_MACOS=-Lmlx -lmlx -framework OpenGL -framework AppKit
+CMLXFLAGS_MACOS=-L./$(MLX) -lmlx -framework OpenGL -framework AppKit
 #CMLXFLAGS_C=-Imlx -c
 RM=rm -f
 
@@ -47,9 +48,9 @@ all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
-#macos: $(NAME_MAC)
+mac: $(NAME_MAC)
 
-#bonus_macos: $(NAME_MAC)
+#bonus_mac: $(NAME_MAC_BONUS)
 
 basic_adventure: 
 	bash launch_basic_adventure.sh
@@ -69,10 +70,11 @@ $(NAME_BONUS): $(OBJS_BONUS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
 
 
-#$(NAME_MAC): $(OBJS)
-#	make -C $(MLX)
-#	make -C $(LIBFT) bonus
-#	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
+$(NAME_MAC): $(OBJS)
+	make -C $(LIBFT) bonus
+	make -C $(GNL) bonus
+	make -s -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
 
 #$(NAME_MAC): $(OBJS_BONUS)
 #	make -C $(MLX)
@@ -89,7 +91,7 @@ clean:
 
 fclean: clean
 	make fclean -C $(LIBFT)
-	$(RM) $(NAME) $(NAME_MAC)
+	$(RM) $(NAME) $(NAME_BONUS)
 
 re: fclean all
 
