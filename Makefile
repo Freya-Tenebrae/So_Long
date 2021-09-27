@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/27 11:48:00 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/27 11:51:08 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -89,10 +89,12 @@ $(NAME_MAC): $(OBJS)
 
 clean:
 	make clean -C $(LIBFT)
+	make clean -C $(GNL)
 	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	make fclean -C $(LIBFT)
+	make fclean -C $(GNL)
 	$(RM) $(NAME) $(NAME_BONUS)
 
 re: fclean all
