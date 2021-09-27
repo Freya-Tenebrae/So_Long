@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/27 11:27:51 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/27 11:48:00 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -18,13 +18,15 @@ SRCS=$(addprefix ${FOLDER}/, \
 	ft_so_long.c\
 	ft_tools_error.c\
 	ft_tools_map.c\
-	ft_tools_map_validity.c)
+	ft_tools_map_validity.c\
+	ft_game_init.c)
 SRCS_BOUNS=$(addprefix ${FOLDER}/, \
 	ft_so_long_bonus.c\
 	ft_tools_error.c\
+	ft_tools_maps_memory_bonus.c\
 	ft_tools_map.c\
 	ft_tools_map_validity_bonus.c\
-	ft_tools_maps_memory_bonus.c)
+	ft_game_init_bonus.c)
 OBJS=$(SRCS:.c=.o)
 OBJS_BONUS=$(SRCS_BOUNS:.c=.o)
 
@@ -87,7 +89,7 @@ $(NAME_MAC): $(OBJS)
 
 clean:
 	make clean -C $(LIBFT)
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	make fclean -C $(LIBFT)

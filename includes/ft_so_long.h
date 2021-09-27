@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/27 11:28:04 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/09/27 11:48:42 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_maps
 /* ************************************************************************** */
 int		main(int argc, const char **argv);
 void	ft_check_map_validity(const char **map);
+char	*ft_game_init(char **map);
 /* ************************************************************************** */
 /*                                   TOOLS                                    */
 /* ************************************************************************** */
@@ -44,5 +45,6 @@ void	ft_free_map(char ***map);
 /*                                   BONUS                                    */
 /* ************************************************************************** */
 t_maps	*ft_init_maps(void);
+char	*ft_game_init_bonus(t_maps *maps);
 void	ft_free_maps(t_maps **maps);
 #endif
