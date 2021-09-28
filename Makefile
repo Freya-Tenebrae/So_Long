@@ -6,13 +6,11 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/28 14:06:07 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/28 16:36:55 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
 NAME_BONUS=so_long_bonus
-NAME_MAC=so_long_mac
-#NAME_MAC_BONUS=so_long_bonus
 
 SRCS=$(addprefix ${FOLDER}/, \
 	ft_so_long.c\
@@ -41,51 +39,31 @@ MLX=$(addprefix ${INCLUDES}/, mlx)
 
 CC=gcc -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
-#CMLXFLAGS=-lft -lmlx -lXext -lX11 -lm -lbds
-CMLXFLAGS_MACOS=-L./$(MLX) -lmlx -framework OpenGL -framework AppKit
-#CMLXFLAGS_C=-Imlx -c
+CMLXFLAGS=-L$(MLX) -I$(MLX) -lXext -lX11 -lm -lz
+CMLXFLAGS_C=-I$(MLX)
 RM=rm -f
 
 all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
-mac: $(NAME_MAC)
-
-#bonus_mac: $(NAME_MAC_BONUS)
-
 basic_adventure: 
 	bash launch_basic_adventure.sh
 
 $(NAME): $(OBJS)
-#	make -C $(MLX)
 	make -C $(LIBFT) bonus
 	make -C $(GNL) bonus
-#	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
+	make -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
 
 $(NAME_BONUS): $(OBJS_BONUS)
-#	make -C $(MLX)
 	make -C $(LIBFT) bonus
 	make -C $(GNL) bonus
-#	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
-
-
-$(NAME_MAC): $(OBJS)
-	make -C $(LIBFT) bonus
-	make -C $(GNL) bonus
-	make -s -C $(MLX)
-	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a
-
-#$(NAME_MAC): $(OBJS_BONUS)
-#	make -C $(MLX)
-#	make -C $(LIBFT) bonus
-#	$(CC) $(CFLAGS) $(CMLXFLAGS_MACOS) -o $@ $^ $(LIBFT)/libft.a
+	make -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
 
 %.o: %.c
-#	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)
-	$(CC) -c $(CFLAGS) -o $@ $< -I $(INCLUDES)
+	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)
 
 clean:
 	make clean -C $(LIBFT)

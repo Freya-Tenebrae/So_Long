@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/27 11:48:42 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:33:53 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /* ************************************************************************** */
 /*                                  INCLUDES                                  */
 /* ************************************************************************** */
-// # include "mlx/mlx.h"
-// # include "mlx/mlx_int.h"
+# include "mlx/mlx.h"
+# include "mlx/mlx_int.h"
 # include "libft/libft.h"
 # include "gnl/get_next_line_bonus.h"
 
