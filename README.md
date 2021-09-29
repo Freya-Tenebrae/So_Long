@@ -49,11 +49,14 @@ exemple of uses
 
 (visual will come soon)
 
+## Credit :
+
+[Rogue Fantasy Castle](https://szadiart.itch.io/rogue-fantasy-castle)  by Szadi art
+
 ## To-Do
 
 - [x] map parsing
-- [ ] graphic part
-- [ ] assets (tiles and sprite) founds
+- [ ] graphic part to complete
 - [ ] ennemy IA / ennemy round
 - [ ] movement count
 - [ ] GUI
