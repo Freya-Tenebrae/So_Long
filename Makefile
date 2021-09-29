@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/29 13:58:06 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/29 19:35:28 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -17,7 +17,8 @@ SRCS=$(addprefix ${FOLDER}/, \
 	ft_tools_error.c\
 	ft_tools_map.c\
 	ft_tools_map_validity.c\
-	ft_game_init.c)
+	ft_game_init.c\
+	ft_tools_images_management.c)
 SRCS_BOUNS=$(addprefix ${FOLDER}/, \
 	ft_so_long_bonus.c\
 	ft_tools_error.c\
