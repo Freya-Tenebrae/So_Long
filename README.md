@@ -27,7 +27,7 @@ for advenced So_Long :
 make bonus
 ```
 
-> advenced So_Long have some improvement : a multi level management, and three types of ennemy (static, path, following).
+> advenced So_Long have some improvement : a multi level management, and two types of ennemy (static or followint a predeterminated path).
 
 ### Exemple of uses
 
@@ -68,6 +68,6 @@ maps/basic_maps/generic_adventure_5.ber
 - [x] compilation
 - [x] map parsing
 - [ ] graphic part
-- [ ] ennemy IA / ennemy round
+- [ ] ennemy round
 - [ ] movement count
 - [ ] GUI
