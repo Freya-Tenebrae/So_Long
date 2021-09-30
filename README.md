@@ -27,7 +27,7 @@ for advenced So_Long :
 make bonus
 ```
 
-> advenced push_swap will have some improvement, a multi level management, new pickup (key, and health), three types of ennemy (static, path, following).
+> advenced So_Long have some improvement : a multi level management, and three types of ennemy (static, path, following).
 
 ### Exemple of uses
 
@@ -44,7 +44,9 @@ exemple of uses
 #### Bonus
 
 ```shell
-./so_long maps/basic_maps/generic_adventure_1.ber maps/basic_maps/generic_adventure_2.ber maps/basic_maps/generic_adventure_3.ber
+./so_long maps/basic_maps/generic_adventure_1.ber maps/basic_maps/generic_adventure_2.ber \
+maps/basic_maps/generic_adventure_3.ber maps/basic_maps/generic_adventure_4.ber \
+maps/basic_maps/generic_adventure_5.ber
 ```
 
 (visual will come soon)
