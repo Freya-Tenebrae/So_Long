@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/30 19:21:48 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/09/30 23:28:27 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -49,22 +49,20 @@ all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
-basic_adventure: 
+basic_adventure: bonus
 	bash launch_basic_adventure.sh
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT) bonus
 	make -C $(GNL) bonus
-	make -C $(MLX)
-	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a \
-	$(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+	make -s -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
 
 $(NAME_BONUS): $(OBJS_BONUS)
 	make -C $(LIBFT) bonus
 	make -C $(GNL) bonus
-	make -C $(MLX)
-	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a \
-	$(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+	make -s -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)
@@ -72,6 +70,7 @@ $(NAME_BONUS): $(OBJS_BONUS)
 clean:
 	make clean -C $(LIBFT)
 	make clean -C $(GNL)
+	make clean -C $(MLX)
 	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
