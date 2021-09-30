@@ -27,7 +27,7 @@ for advenced So_Long :
 make bonus
 ```
 
-> advenced push_swap will have some improvement, like outers wall, dynamic backgrounds, new pickup (key, and health), new obstacles (Door), and four types of ennemy (static, predeterminated path, mirror movement player and following player).
+> advenced push_swap will have some improvement, a multi level management, new pickup (key, and health), three types of ennemy (static, path, following).
 
 ### Exemple of uses
 
@@ -44,20 +44,28 @@ exemple of uses
 #### Bonus
 
 ```shell
-./so_long maps/basic_maps/advenced_6x14.ber
+./so_long maps/basic_maps/generic_adventure_1.ber maps/basic_maps/generic_adventure_2.ber maps/basic_maps/generic_adventure_3.ber
 ```
 
 (visual will come soon)
 
-## Credit :
+## Credits
 
-[Rogue Fantasy Castle](https://szadiart.itch.io/rogue-fantasy-castle)  by Szadi art
+>Tileset	: [Rogue Fantasy Castle](https://szadiart.itch.io/rogue-fantasy-castle)  by szadi art
+
+>Cat		: [Catset](https://seethingswarm.itch.io/catset)  by seethingswarm
+
+>Witches	: [Witches pack](https://9e0.itch.io/witches-pack)  by 9e0
+
+>Portal	: [2d pixel art portal sprites](https://elthen.itch.io/2d-pixel-art-portal-sprites)  by elthen
+
+>Pickup	: [32x32 in game items asset pack](https://beyonderboy.itch.io/32x32-in-game-items-asset-pack)  by beyonderboy
 
 ## To-Do
 
+- [x] compilation
 - [x] map parsing
-- [ ] graphic part to complete
+- [ ] graphic part
 - [ ] ennemy IA / ennemy round
 - [ ] movement count
 - [ ] GUI
-- [ ] Error management
