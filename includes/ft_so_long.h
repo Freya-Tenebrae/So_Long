@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/01 17:04:22 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/01 18:52:21 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,8 @@
 /* ************************************************************************** */
 # define SIZE_SPRITE 64
 # define BASIC_TILES "./data/type_1/basic_tile.xpm"
-# define WALL_00 "./data/type_1/wall_00.xpm"
-# define WALL_01 "./data/type_1/wall_01.xpm"
-# define WALL_02 "./data/type_1/wall_02.xpm"
-# define WALL_03 "./data/type_1/wall_03.xpm"
-# define WALL_04 "./data/type_1/wall_04.xpm"
-# define WALL_05 "./data/type_1/wall_05.xpm"
-# define WALL_06 "./data/type_1/wall_06.xpm"
-# define WALL_07 "./data/type_1/wall_07.xpm"
-# define WALL_08 "./data/type_1/wall_08.xpm"
-# define WALL_09 "./data/type_1/wall_09.xpm"
-# define WALL_10 "./data/type_1/wall_10.xpm"
-# define WALL_11 "./data/type_1/wall_11.xpm"
-# define WALL_12 "./data/type_1/wall_12.xpm"
-# define WALL_13 "./data/type_1/wall_13.xpm"
-# define WALL_14 "./data/type_1/wall_14.xpm"
-# define WALL_15 "./data/type_1/wall_15.xpm"
+# define WALL_TO_DEFINE_START "./data/type_1/wall/wall_"
+# define WALL_TO_DEFINE_END ".xpm"
 # define WALL_S "./data/type_1/wall_s.xpm"
 # define WALL_E "./data/type_1/wall_e.xpm"
 # define WALL_W "./data/type_1/wall_w.xpm"
@@ -92,6 +78,7 @@ int		ft_draw_player(void *mlx, t_data **scene, t_maps *maps, int pos[2]);
 int		ft_draw_exit(void *mlx, t_data **scene, t_maps *maps, int pos[2]);
 int		ft_draw_collectible(void *mlx, t_data **scene, t_maps *maps, \
 			int pos[2]);
+char	*ft_select_wall(t_maps *maps, int pos[2]);
 /* ************************************************************************** */
 /*                                   BONUS                                    */
 /* ************************************************************************** */
