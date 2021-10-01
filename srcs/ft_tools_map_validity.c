@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/24 08:27:48 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/01 16:44:48 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,5 @@ void	ft_check_map_validity(const char **map)
 	if (ft_check_map_validity_actor_present(map, "E") != 0)
 		ft_error("a mendatory actor 'Exit' isn't present");
 	if (ft_check_map_validity_actor_present(map, "C") != 0)
-		ft_error("a mendatory actor 'Pickup' isn't present");
+		ft_error("a mendatory actor 'Collectible' isn't present");
 }

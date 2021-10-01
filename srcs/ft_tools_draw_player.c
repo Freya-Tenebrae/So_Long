@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_game_init.c                                     :+:      :+:    :+:   */
+/*   ft_tools_draw_player.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/01 16:49:59 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/01 16:57:11 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-char	*ft_game_init(t_maps *maps)
+int	ft_draw_player(void *mlx, t_data **scene, t_maps *maps, int pos[2])
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	*scene;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, SIZE_SPRITE * maps->x_lenght, \
-									SIZE_SPRITE * maps->y_lenght, "so_long");
-	if (ft_draw_scene(mlx, &scene, maps) != 0)
-		return ("drawing error");
-	ft_put_images(scene, mlx, mlx_win, maps);
-	free (scene);
-	mlx_loop(mlx);
-	return ("");
+	ft_fill_img(mlx, &((*scene)[pos[0] + pos[1] * \
+		maps->x_lenght]), BASIC_TILES);
+	return (0);
 }

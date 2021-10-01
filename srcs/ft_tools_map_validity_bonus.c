@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/30 17:52:12 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/01 16:45:13 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	ft_check_map_validity_all_actor_are_valid(const char **map)
 		n_char = 0;
 		while (map[n_line][n_char] != '\0')
 		{
-			if (ft_strchr("01PCEXxKDH", map[n_line][n_char]) == NULL)
+			if (ft_strchr("01PCEXx", map[n_line][n_char]) == NULL)
 				ft_error("an actor (pickup, exit, player, ...) isn't valid");
 			n_char += 1;
 		}
@@ -107,4 +107,6 @@ void	ft_check_map_validity(const char **map)
 		ft_error("a mendatory actor 'Player' isn't present");
 	if (ft_check_map_validity_actor_present(map, "E") != 0)
 		ft_error("a mendatory actor 'Exit' isn't present");
+	if (ft_check_map_validity_actor_present(map, "C") != 0)
+		ft_error("a mendatory actor 'Collectible' isn't present");
 }
