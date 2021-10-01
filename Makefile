@@ -6,11 +6,13 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/09/30 23:28:27 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/10/01 12:56:02 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
+NAME_MAC=so_long_mac_version
 NAME_BONUS=so_long_bonus
+NAME_BONUS_MAC=so_long_bonus_mac_version
 
 SRCS=$(addprefix ${FOLDER}/, \
 	ft_so_long.c\
@@ -42,6 +44,7 @@ MLX=$(addprefix ${INCLUDES}/, mlx)
 CC=gcc -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
 CMLXFLAGS=-L$(MLX) -I$(MLX) -lXext -lX11 -lm -lz
+CMLXFLAGS_MAC=-L$(MLX) -l$(MLX) -framework OpenGL AppKit
 CMLXFLAGS_C=-I$(MLX)
 RM=rm -f
 
@@ -50,6 +53,13 @@ all: $(NAME)
 bonus: $(NAME_BONUS)
 
 basic_adventure: bonus
+	bash launch_basic_adventure.sh
+
+mac: $(NAME_MAC)
+
+mac_bonus: $(NAME_BONUS_MAC)
+
+basic_adventure_mac: mac_bonus
 	bash launch_basic_adventure.sh
 
 $(NAME): $(OBJS)
@@ -63,6 +73,18 @@ $(NAME_BONUS): $(OBJS_BONUS)
 	make -C $(GNL) bonus
 	make -s -C $(MLX)
 	$(CC) $(CFLAGS) $(CMLXFLAGS) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+
+$(NAME_MAC): $(OBJS)
+	make -C $(LIBFT) bonus
+	make -C $(GNL) bonus
+	make -s -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS_MAC) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx.a
+
+$(NAME_BONUS_MAC): $(OBJS_BONUS)
+	make -C $(LIBFT) bonus
+	make -C $(GNL) bonus
+	make -s -C $(MLX)
+	$(CC) $(CFLAGS) $(CMLXFLAGS_MAC) -o $@ $^ $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlxs.a
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $(CMLXFLAGS_C) -o $@ $< -I $(INCLUDES)

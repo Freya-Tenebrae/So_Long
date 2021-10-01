@@ -2,3 +2,5 @@
 *.o
 so_long
 so_long_bonus
+includes/mlx/X11
+includes/mlx/X11/*
