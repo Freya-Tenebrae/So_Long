@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/01 18:52:21 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/02 04:00:30 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 /*                                   DEFINE                                   */
 /* ************************************************************************** */
 # define SIZE_SPRITE 64
-# define BASIC_TILES "./data/type_1/basic_tile.xpm"
-# define WALL_TO_DEFINE_START "./data/type_1/wall/wall_"
+# define BASIC_TILES "./data/basic_tile.xpm"
+# define WALL_TO_DEFINE_START "./data/wall/wall_"
 # define WALL_TO_DEFINE_END ".xpm"
-# define WALL_S "./data/type_1/wall_s.xpm"
-# define WALL_E "./data/type_1/wall_e.xpm"
-# define WALL_W "./data/type_1/wall_w.xpm"
-# define WALL_N "./data/type_1/wall_n_basic.xpm"
-# define WALL_N_V0 "./data/type_1/wall_n_window.xpm"
-# define WALL_N_V1 "./data/type_1/wall_n_bricked_window.xpm"
+# define WALL_S "./data/wall/wall_s.xpm"
+# define WALL_E "./data/wall/wall_e.xpm"
+# define WALL_W "./data/wall/wall_w.xpm"
+# define WALL_N "./data/wall/wall_n_basic.xpm"
+# define WALL_N_V0 "./data/wall/wall_n_window.xpm"
+# define WALL_N_V1 "./data/wall/wall_n_bricked_window.xpm"
 
 /* ************************************************************************** */
 /*                                  TYPEDEF                                   */
