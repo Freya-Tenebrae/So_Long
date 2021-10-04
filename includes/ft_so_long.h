@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/04 13:18:11 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:35:13 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@
 # define WALL_N "./data/wall/wall_n_basic.xpm"
 # define WALL_N_V0 "./data/wall/wall_n_window.xpm"
 # define WALL_N_V1 "./data/wall/wall_n_bricked_window.xpm"
+# define PLAYER_MAX_FRAME 8
 # define PLAYER_IDDLE "./data/player/cat_iddle_"
 # define PLAYER_IDDLE_ALT "./data/player/cat_iddle_alt_"
 # define PLAYER_IDDLE_PICK "./data/player/cat_iddle_pick_"
 # define PLAYER_GAME_OVER "./data/player/cat_game_over_"
+# define EXIT_MAX_FRAME 12
 # define EXIT "./data/exit/exit.xpm"
 # define EXIT_PLAYER "./data/exit/cat_exit_"
 # define EXIT_WIN "./data/exit/exit_win_"
+# define COLLECTIBLE_MAX_FRAME 4
 # define COLLECTIBLE "./data/collectible/collectible_"
-# define ENNEMIES "./data/ennemies/witch_r_"
-# define ENNEMIES_ALT "./data/ennemies/witch_w_"
+# define ENEMIES_MAX_FRAME 6
+# define ENEMIES "./data/enemies/witch_r_"
+# define ENEMIES_ALT "./data/enemies/witch_w_"
 # define XPM ".xpm"
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/01 16:45:13 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:42:54 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,26 @@ static void	ft_check_map_validity_all_actor_are_valid(const char **map)
 static int	ft_check_map_validity_actor_present(const char **map, \
 												const char *actor)
 {
+	int	n_actor;
 	int	n_line;
 	int	n_char;
 
-	n_line = 1;
+	n_actor = 0;
+	n_line = 0;
 	while (map[n_line] != NULL)
 	{
 		n_char = 0;
 		while (map[n_line][n_char] != '\0')
 		{
 			if (ft_strchr(actor, map[n_line][n_char]) != NULL)
-				return (0);
+				n_actor += 1;
 			n_char += 1;
 		}
 		n_line += 1;
 	}
-	return (-1);
+	if (n_actor == 0 || (ft_strchr(actor, 'P') != NULL && n_actor > 1))
+		return (-1);
+	return (0);
 }
 
 void	ft_check_map_validity(const char **map)
