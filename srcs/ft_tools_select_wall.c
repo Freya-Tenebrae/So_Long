@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/01 20:00:18 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:13:10 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	*ft_select_wall(t_maps *maps, int pos[2])
 	char	*str;
 	char	*str_joined;
 
-	str = WALL_TO_DEFINE_START;
+	str = WALL_TO_DEFINE;
 	if (ft_get_needed_wall_p1(maps, pos, &str, &str_joined) == NULL)
 		return (NULL);
 	if (ft_get_needed_wall_p2(maps, pos, &str, &str_joined) == NULL)
@@ -120,7 +120,7 @@ char	*ft_select_wall(t_maps *maps, int pos[2])
 		return (NULL);
 	if (ft_get_needed_wall_p4(maps, pos, &str, &str_joined) == NULL)
 		return (NULL);
-	str_joined = ft_strjoin(str, WALL_TO_DEFINE_END);
+	str_joined = ft_strjoin(str, XPM);
 	free(str);
 	return (str_joined);
 }

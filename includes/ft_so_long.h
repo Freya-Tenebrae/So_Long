@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/02 04:00:30 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:18:11 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,24 @@
 /* ************************************************************************** */
 # define SIZE_SPRITE 64
 # define BASIC_TILES "./data/basic_tile.xpm"
-# define WALL_TO_DEFINE_START "./data/wall/wall_"
-# define WALL_TO_DEFINE_END ".xpm"
+# define WALL_TO_DEFINE "./data/wall/wall_"
 # define WALL_S "./data/wall/wall_s.xpm"
 # define WALL_E "./data/wall/wall_e.xpm"
 # define WALL_W "./data/wall/wall_w.xpm"
 # define WALL_N "./data/wall/wall_n_basic.xpm"
 # define WALL_N_V0 "./data/wall/wall_n_window.xpm"
 # define WALL_N_V1 "./data/wall/wall_n_bricked_window.xpm"
+# define PLAYER_IDDLE "./data/player/cat_iddle_"
+# define PLAYER_IDDLE_ALT "./data/player/cat_iddle_alt_"
+# define PLAYER_IDDLE_PICK "./data/player/cat_iddle_pick_"
+# define PLAYER_GAME_OVER "./data/player/cat_game_over_"
+# define EXIT "./data/exit/exit.xpm"
+# define EXIT_PLAYER "./data/exit/cat_exit_"
+# define EXIT_WIN "./data/exit/exit_win_"
+# define COLLECTIBLE "./data/collectible/collectible_"
+# define ENNEMIES "./data/ennemies/witch_r_"
+# define ENNEMIES_ALT "./data/ennemies/witch_w_"
+# define XPM ".xpm"
 
 /* ************************************************************************** */
 /*                                  TYPEDEF                                   */
