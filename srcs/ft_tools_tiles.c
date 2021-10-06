@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:22:48 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 07:26:33 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static t_tiles	*ft_init_tile(t_maps *maps, int var, int pos[2])
 	free(tiles);
 	return (NULL);
 }
+
+/* check for alloc a img[] (for frame animation) and free img[]*/
 
 void	ft_free_tiles(t_tiles **tiles)
 {
