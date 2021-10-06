@@ -59,8 +59,6 @@ maps/basic_maps/generic_adventure_5.ber
 
 >Witches	: [Witches pack](https://9e0.itch.io/witches-pack)  by 9e0
 
->Portal	: [2d pixel art portal sprites](https://elthen.itch.io/2d-pixel-art-portal-sprites)  by elthen
-
 >Pickup	: [32x32 in game items asset pack](https://beyonderboy.itch.io/32x32-in-game-items-asset-pack)  by beyonderboy
 
 ## To-Do
