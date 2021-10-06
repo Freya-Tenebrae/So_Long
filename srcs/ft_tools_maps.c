@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/09/29 20:08:07 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 03:51:49 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_maps	*ft_init_maps(void)
 	maps->type = 0;
 	maps->x_lenght = 0;
 	maps->y_lenght = 0;
-	maps->next = NULL;
 	return (maps);
 }
 
@@ -36,14 +35,6 @@ void	ft_get_size_map(t_maps **maps)
 
 void	ft_free_maps(t_maps **maps)
 {
-	t_maps	*maps_ptr;
-
-	maps_ptr = *maps;
-	while (maps_ptr != NULL)
-	{
-		ft_free_map(&(maps_ptr->map));
-		maps_ptr = maps_ptr->next;
-		free(*maps);
-		*maps = maps_ptr;
-	}	
+	ft_free_map(&(maps_ptr->map));
+	free(*maps);
 }

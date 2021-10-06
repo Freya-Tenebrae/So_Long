@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+v/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_so_long.h                                       :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/05 20:11:30 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 05:00:20 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@
 # define EXIT_PLAYER "./data/exit/cat_exit_"
 # define EXIT_WIN "./data/exit/exit_win_"
 # define COLLECTIBLE_MAX_FRAME 4
+# define COLLECTIBLE_ALT_NBR 4
 # define COLLECTIBLE "./data/collectible/collectible_"
 # define ENEMIES_MAX_FRAME 6
-# define ENEMIES "./data/enemies/witch_r_"
-# define ENEMIES_ALT "./data/enemies/witch_w_"
+# define ENEMIES_ALT_NBR 2
+# define ENEMIES "./data/enemies/witch_"
 # define XPM ".xpm"
 
 /* ************************************************************************** */
@@ -55,45 +56,42 @@
 typedef struct s_maps
 {
 	char				**map;
-	char				*type;
 	int					x_lenght;
 	int					y_lenght;
-	struct s_maps		*next;
+	// int					endian;
+	// int					bits_per_pixel;
 }						t_maps;
-typedef struct s_data
+
+typedef struct s_tiles
 {
+	char				type;
+	int					var;
+	int					frame;
+	int					x_pos;
+	int					y_pos;
+	char				*path;
 	void				*img;
-	char				*addr;
-	int					bits_per_pixel;
-	int					line_length;
-	int					endian;
-}						t_data;
+	struct s_tiles		*next;
+}						t_tiles;
 
 /* ************************************************************************** */
-/*                                 MAIN PART                                  */
+/*                                  FONCTION                                  */
 /* ************************************************************************** */
 int		main(int argc, const char **argv);
-void	ft_check_map_validity(const char **map);
-char	*ft_game_init(t_maps *maps);
-/* ************************************************************************** */
-/*                                   TOOLS                                    */
-/* ************************************************************************** */
+void	ft_success(void);
 void	ft_error(char *str);
-void	ft_get_map(char ***map, const char *path);
+char	*ft_get_path(t_maps *maps, int pos[2], char type, int var);
+int		ft_draw_scene(void *mlx, t_maps *maps, t_tiles **tiles);
 void	ft_free_map(char ***map);
-void	ft_fill_img(void *mlx, t_data *img, char *path);
-void	ft_put_images(t_data *scene, void *mlx, void *mlx_win, t_maps *maps);
+void	ft_get_map(char ***map, const char *path);
+char	*ft_check_map_validity(const char **map);
 t_maps	*ft_init_maps(void);
 void	ft_get_size_map(t_maps **maps);
 void	ft_free_maps(t_maps **maps);
-int		ft_draw_scene(void *mlx, t_data **scene, t_maps *maps);
-int		ft_draw_wall(void *mlx, t_data **scene, t_maps *maps, int pos[2]);
-int		ft_draw_player(void *mlx, t_data **scene, t_maps *maps, int pos[2]);
-int		ft_draw_exit(void *mlx, t_data **scene, t_maps *maps, int pos[2]);
-int		ft_draw_collectible(void *mlx, t_data **scene, t_maps *maps, \
-			int pos[2]);
 char	*ft_select_wall(t_maps *maps, int pos[2]);
+void	ft_free_tiles(t_tiles **tiles);
+t_tiles	*ft_init_tiles(t_maps *maps);
 /* ************************************************************************** */
-/*                                   BONUS                                    */
+/*                                    END                                     */
 /* ************************************************************************** */
 #endif

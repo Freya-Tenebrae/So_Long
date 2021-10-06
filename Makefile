@@ -6,7 +6,7 @@
 #    By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/14 23:11:43 by cmaginot          #+#    #+#              #
-#    Updated: 2021/10/01 18:53:08 by cmaginot         ###   ########.fr        #
+#    Updated: 2021/10/06 05:52:59 by cmaginot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME=so_long
@@ -16,25 +16,24 @@ NAME_BONUS_MAC=so_long_bonus_mac_version
 
 SRCS=$(addprefix ${FOLDER}/, \
 	ft_so_long.c\
-	ft_tools_error.c\
-	ft_tools_maps.c\
+	ft_tools_exit.c\
+	ft_tools_get_path.c\
+	ft_tools_images_management.c\
 	ft_tools_map.c\
 	ft_tools_map_validity.c\
-	ft_game_init.c\
-	ft_tools_draw_collectible.c\
-	ft_tools_draw_exit.c\
-	ft_tools_draw_player.c\
-	ft_tools_draw_scene.c\
-	ft_tools_draw_wall.c\
-	ft_tools_select_wall.c\
-	ft_tools_images_management.c)
-SRCS_BOUNS=$(addprefix ${FOLDER}/, \
-	ft_so_long_bonus.c\
-	ft_tools_error.c\
 	ft_tools_maps.c\
+	ft_tools_select_wall.c\
+	ft_tools_tiles.c)
+SRCS_BOUNS=$(addprefix ${FOLDER}/, \
+	ft_so_long.c\
+	ft_tools_exit.c\
+	ft_tools_get_path.c\
+	ft_tools_images_management.c\
 	ft_tools_map.c\
 	ft_tools_map_validity_bonus.c\
-	ft_game_init_bonus.c)
+	ft_tools_maps.c\
+	ft_tools_select_wall.c\
+	ft_tools_tiles.c)
 OBJS=$(SRCS:.c=.o)
 OBJS_BONUS=$(SRCS_BOUNS:.c=.o)
 
