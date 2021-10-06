@@ -58,17 +58,18 @@ typedef struct s_maps
 	char				**map;
 	int					x_lenght;
 	int					y_lenght;
-	// int					endian;
-	// int					bits_per_pixel;
+// 	int					endian;
+// 	int					bits_per_pixel;
+	struct s_tiles		*tiles;
 }						t_maps;
 
 typedef struct s_tiles
 {
+	int					x_pos;
+	int					y_pos;
 	char				type;
 	int					var;
 	int					frame;
-	int					x_pos;
-	int					y_pos;
 	char				*path;
 	void				*img;
 	struct s_tiles		*next;

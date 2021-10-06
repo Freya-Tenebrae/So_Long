@@ -6,30 +6,30 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/06 05:46:24 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 06:44:28 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-static int	ft_select_border_wall(t_maps *maps, int pos[2])
+static int	ft_select_border_wall(t_maps *maps, t_tiles *tiles)
 {
-	if (pos[1] == maps->y_lenght - 1)
+	if (tiles->y_pos == maps->y_lenght - 1)
 	{
-		if (pos[0] == 0 || pos[0] == maps->x_lenght - 1)
+		if (tiles->x_pos == 0 || tiles->x_pos == maps->x_lenght - 1)
 			return (strdup(WALL_S));
 		else
-			return (ft_select_wall(maps, pos))
+			return (ft_select_wall(maps, tiles))
 	}
-	else if (pos[0] == 0)
+	else if (tiles->x_pos == 0)
 		return (strdup(WALL_W));
-	else if (pos[0] == maps->x_lenght - 1)
+	else if (tiles->x_pos == maps->x_lenght - 1)
 		return (strdup(WALL_E));
-	else if (pos[1] == 0)
+	else if (tiles->y_pos == 0)
 	{
-		if ((pos[0] % 2 == 1))
+		if ((tiles->x_pos % 2 == 1))
 			return (strdup(WALL_N));
-		else if ((pos[0] % 6 == 2))
+		else if ((tiles->x_pos % 6 == 2))
 			return (strdup(WALL_N_V1));
 		else
 			return (strdup(WALL_N_V0));
@@ -38,23 +38,23 @@ static int	ft_select_border_wall(t_maps *maps, int pos[2])
 }
 
 
-static char	*get_str_path_wall(t_maps *maps, int pos[2])
+static char	*get_str_path_wall(t_maps *maps, t_tiles *tiles)
 {
-	if (pos[0] == 0 || pos[0] == maps->x_lenght - 1 || \
-		pos[1] == 0 || pos[1] == maps->y_lenght - 1)
-		return (ft_select_border_wall(maps, pos));
+	if (tiles->x_pos == 0 || tiles->x_pos == maps->x_lenght - 1 || \
+		tiles->y_pos == 0 || tiles->y_pos == maps->y_lenght - 1)
+		return (ft_select_border_wall(maps, tiles));
 	else
-		return (ft_select_wall(maps, pos))
+		return (ft_select_wall(maps, tiles))
 }
 
-static char	*get_str_path(char type, char *first_part_path, int var)
+static char	*get_str_path(t_tiles *tiles, char *first_part_path)
 {
 	char	*str;
 	char	*str_joined;
 
-	if (type == C || type == X)
+	if (tiles->type == C || tiles->type == X)
 	{
-		str = ft_itoa(var);
+		str = ft_itoa(tiles->var);
 		if (str == NULL)
 			return (NULL);
 		str_joined = ft_strjoin(first_part_path, str);
@@ -73,20 +73,20 @@ static char	*get_str_path(char type, char *first_part_path, int var)
 	return (str_joined);
 }
 
-char	*ft_get_path(t_maps *maps, int pos[2], char type, int var)
+char	*ft_get_path(t_maps *maps, t_tiles *tiles)
 {
 	char *path;
 
-	if (type == '1')
-		return (get_str_path_wall(maps, pos));
-	else if (type == 'P')
-		return (get_str_path(type, PLAYER_IDDLE, var));
-	else if (type == 'C')
-		return (get_str_path(type, COLLECTIBLE, var));
-	else if (type == 'E')
-		return (get_str_path(type, EXIT, var));
-	else if (type == 'X')
-		return (get_str_path(type, ENEMIES, var));
+	if (tiles->type == '1')
+		return (get_str_path_wall(maps, tiles));
+	else if (tiles->type == 'P')
+		return (get_str_path(tiles, PLAYER_IDDLE));
+	else if (tiles->type == 'C')
+		return (get_str_path(tiles, COLLECTIBLE));
+	else if (tiles->type == 'E')
+		return (get_str_path(tiles, EXIT));
+	else if (tiles->type == 'X')
+		return (get_str_path(tiles, ENEMIES));
 	else
 		return (ft_strdup(BASIC_TILES));
 }

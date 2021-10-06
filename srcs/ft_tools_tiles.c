@@ -6,13 +6,13 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 05:20:45 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 06:38:02 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-static t_tiles	*ft_init_tile(t_maps *maps, char type, int var, int pos[2])
+static t_tiles	*ft_init_tile(t_maps *maps, int var, int pos[2])
 {
 	t_tiles	*tiles;
 	char	*path;
@@ -20,7 +20,9 @@ static t_tiles	*ft_init_tile(t_maps *maps, char type, int var, int pos[2])
 	tiles = malloc(sizeof(t_tiles));
 	if (!tiles)
 		return (NULL);
-	tiles->type = type;
+	tiles->x_pos = pos[0];
+	tiles->y_pos = pos[1];
+	tiles->type = maps->map[tiles->y_pos][tiles->x_pos];
 	if (type == 'C')
 		tiles->var = var % COLLECTIBLE_ALT_NBR;
 	else if (type == 'X')
@@ -28,15 +30,16 @@ static t_tiles	*ft_init_tile(t_maps *maps, char type, int var, int pos[2])
 	else
 		tile->var = 0;
 	tiles->frame = 0;
-	tiles->x_pos = pos[0];
-	tiles->y_pos = pos[1];
-	path = ft_get_path(maps, pos, tiles->type, tiles->var);
-	if (path == NULL)
-		return (NULL);
-	tiles->path = path;
-	tiles->img = NULL;
-	tiles->next = NULL;
-	return (tiles);
+	path = ft_get_path(maps, tiles);
+	if (path != NULL)
+	{
+		tiles->path = path;
+		tiles->img = NULL;
+		tiles->next = NULL;
+		return (tiles);
+	}
+	free(tiles);
+	return (NULL);
 }
 
 void	ft_free_tiles(t_tiles **tiles)
@@ -54,27 +57,27 @@ void	ft_free_tiles(t_tiles **tiles)
 	}	
 }
 
-static int	*ft_call_init_tiles(t_maps *maps, t_tiles **tiles, \
-									t_tiles **tiles_ptr, int pos[])
+static int	*ft_call_init_tiles(t_maps **maps, t_tiles **tiles_ptr, int pos[2])
 {
 	t_tiles		*tiles_new;
 	static int	var;
 
 	if (!var)
 		var = 0;
-	tiles_new = ft_init_tile(maps, maps->map[pos[1]][pos[0]] , var, pos);
+	tiles_new = ft_init_tile(*maps, var, pos);
 	if (tiles_new == NULL)
 	{
 		if (*tiles_ptr != NULL)
-			ft_free_tiles(tiles);
+			ft_free_maps(maps);
 		return (-1);
 	}
-	if (maps->map[pos[1]][pos[0]] == 'C' || maps->map[pos[1]][pos[0]] == 'X')
+	if ((*maps)->map[pos[1]][pos[0]] == 'C' || \
+		(*maps)->map[pos[1]][pos[0]] == 'X')
 		var += 1;
 	if (*tiles_ptr == NULL)
 	{
-		*tiles = tiles_new()
-		*tiles_ptr = *tiles;
+		(*maps)->tiles = tiles_new;
+		*tiles_ptr = (*maps)->tiles;
 	}
 	else
 	{
@@ -83,20 +86,19 @@ static int	*ft_call_init_tiles(t_maps *maps, t_tiles **tiles, \
 	}
 }
 
-t_tiles	*ft_init_tiles(t_maps *maps)
+void	ft_init_tiles(t_maps **maps)
 {
-	t_tiles	*tiles;
 	t_tiles	*tiles_ptr;
 	int		pos[2];
 
 	tiles_ptr == NULL;
 	pos[1] = 0;
-	while (pos[1] < maps->y_lenght)
+	while (pos[1] < (*maps)->y_lenght)
 	{
 		pos[0] = 0;
-		while (pos[0] < maps->x_lenght)
+		while (pos[0] < (*maps)->x_lenght)
 		{
-			if (ft_call_init_tiles(map, &tiles, &tiles_ptr, pos) == -1)
+			if (ft_call_init_tiles(maps, &tiles_ptr, pos) == -1)
 				return (-1);
 			pos[0] += 1;
 		}

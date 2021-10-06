@@ -6,23 +6,23 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/04 13:13:10 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 06:48:16 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-static char	*ft_get_needed_wall_p1(t_maps *maps, int pos[2], char **str, \
+static char	*ft_get_needed_wall_p1(t_maps *maps, t_tiles *tiles, char **str, \
 									char **str_joined)
 {
-	if (maps->map[pos[1] - 1][pos[0] - 1] == '1')
+	if (maps->map[tiles->y_pos - 1][tiles->x_pos - 1] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
 	if (*str_joined == NULL)
 		return (NULL);
 	*str = *str_joined;
-	if (maps->map[pos[1] - 1][pos[0]] == '1')
+	if (maps->map[tiles->y_pos - 1][tiles->x_pos] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
@@ -30,7 +30,7 @@ static char	*ft_get_needed_wall_p1(t_maps *maps, int pos[2], char **str, \
 	if (*str_joined == NULL)
 		return (NULL);
 	*str = *str_joined;
-	if (maps->map[pos[1] - 1][pos[0] + 1] == '1')
+	if (maps->map[tiles->y_pos - 1][tiles->x_pos + 1] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
@@ -41,10 +41,10 @@ static char	*ft_get_needed_wall_p1(t_maps *maps, int pos[2], char **str, \
 	return (*str);
 }
 
-static char	*ft_get_needed_wall_p2(t_maps *maps, int pos[2], char **str, \
+static char	*ft_get_needed_wall_p2(t_maps *maps, t_tiles *tiles, char **str, \
 									char **str_joined)
 {
-	if (maps->map[pos[1]][pos[0] - 1] == '1')
+	if (maps->map[tiles->y_pos][tiles->x_pos - 1] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
@@ -52,7 +52,7 @@ static char	*ft_get_needed_wall_p2(t_maps *maps, int pos[2], char **str, \
 	if (*str_joined == NULL)
 		return (NULL);
 	*str = *str_joined;
-	if (maps->map[pos[1]][pos[0] + 1] == '1')
+	if (maps->map[tiles->y_pos][tiles->x_pos + 1] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
@@ -63,14 +63,14 @@ static char	*ft_get_needed_wall_p2(t_maps *maps, int pos[2], char **str, \
 	return (*str);
 }
 
-static char	*ft_get_needed_wall_p3(t_maps *maps, int pos[2], char **str, \
+static char	*ft_get_needed_wall_p3(t_maps *maps, t_tiles *tiles, char **str, \
 									char **str_joined)
 {
-	if (pos[1] + 1 == maps->y_lenght)
+	if (tiles->y_pos + 1 == maps->y_lenght)
 		*str_joined = ft_strjoin(*str, "111");
 	else
 	{
-		if (maps->map[pos[1] + 1][pos[0] - 1] == '1')
+		if (maps->map[tiles->y_pos + 1][tiles->x_pos - 1] == '1')
 			*str_joined = ft_strjoin(*str, "1");
 		else
 			*str_joined = ft_strjoin(*str, "0");
@@ -82,12 +82,12 @@ static char	*ft_get_needed_wall_p3(t_maps *maps, int pos[2], char **str, \
 	return (*str);
 }
 
-static char	*ft_get_needed_wall_p4(t_maps *maps, int pos[2], char **str, \
+static char	*ft_get_needed_wall_p4(t_maps *maps, t_tiles *tiles, char **str, \
 									char **str_joined)
 {
-	if (pos[1] + 1 == maps->y_lenght)
+	if (tiles->y_pos + 1 == maps->y_lenght)
 		return (*str);
-	if (maps->map[pos[1] + 1][pos[0]] == '1')
+	if (maps->map[tiles->y_pos + 1][tiles->x_pos] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
@@ -95,7 +95,7 @@ static char	*ft_get_needed_wall_p4(t_maps *maps, int pos[2], char **str, \
 	if (*str_joined == NULL)
 		return (NULL);
 	*str = *str_joined;
-	if (maps->map[pos[1] + 1][pos[0] + 1] == '1')
+	if (maps->map[tiles->y_pos + 1][tiles->x_pos + 1] == '1')
 		*str_joined = ft_strjoin(*str, "1");
 	else
 		*str_joined = ft_strjoin(*str, "0");
@@ -106,19 +106,19 @@ static char	*ft_get_needed_wall_p4(t_maps *maps, int pos[2], char **str, \
 	return (*str);
 }
 
-char	*ft_select_wall(t_maps *maps, int pos[2])
+char	*ft_select_wall(t_maps *maps, t_tiles *tiles)
 {
 	char	*str;
 	char	*str_joined;
 
 	str = WALL_TO_DEFINE;
-	if (ft_get_needed_wall_p1(maps, pos, &str, &str_joined) == NULL)
+	if (ft_get_needed_wall_p1(maps, tiles, &str, &str_joined) == NULL)
 		return (NULL);
-	if (ft_get_needed_wall_p2(maps, pos, &str, &str_joined) == NULL)
+	if (ft_get_needed_wall_p2(maps, tiles, &str, &str_joined) == NULL)
 		return (NULL);
-	if (ft_get_needed_wall_p3(maps, pos, &str, &str_joined) == NULL)
+	if (ft_get_needed_wall_p3(maps, tiles, &str, &str_joined) == NULL)
 		return (NULL);
-	if (ft_get_needed_wall_p4(maps, pos, &str, &str_joined) == NULL)
+	if (ft_get_needed_wall_p4(maps, tiles, &str, &str_joined) == NULL)
 		return (NULL);
 	str_joined = ft_strjoin(str, XPM);
 	free(str);
