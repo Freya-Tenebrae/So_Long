@@ -1,4 +1,4 @@
-v/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_so_long.h                                       :+:      :+:    :+:   */
@@ -6,7 +6,7 @@ v/* ************************************************************************** *
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 05:00:20 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 07:16:36 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,17 @@ typedef struct s_tiles
 int		main(int argc, const char **argv);
 void	ft_success(void);
 void	ft_error(char *str);
-char	*ft_get_path(t_maps *maps, int pos[2], char type, int var);
-int		ft_draw_scene(void *mlx, t_maps *maps, t_tiles **tiles);
+char	*ft_get_path(t_maps *maps, t_tiles *tiles);
+int		ft_draw_scene(void *mlx, void *mlx_win, t_maps **maps);
 void	ft_free_map(char ***map);
 void	ft_get_map(char ***map, const char *path);
 char	*ft_check_map_validity(const char **map);
 t_maps	*ft_init_maps(void);
 void	ft_get_size_map(t_maps **maps);
 void	ft_free_maps(t_maps **maps);
-char	*ft_select_wall(t_maps *maps, int pos[2]);
+char	*ft_select_wall(t_maps *maps, t_tiles *tiles);
 void	ft_free_tiles(t_tiles **tiles);
-t_tiles	*ft_init_tiles(t_maps *maps);
+void	ft_init_tiles(t_maps **maps);
 /* ************************************************************************** */
 /*                                    END                                     */
 /* ************************************************************************** */

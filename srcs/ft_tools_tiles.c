@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 06:38:02 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 07:22:48 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static t_tiles	*ft_init_tile(t_maps *maps, int var, int pos[2])
 	tiles->x_pos = pos[0];
 	tiles->y_pos = pos[1];
 	tiles->type = maps->map[tiles->y_pos][tiles->x_pos];
-	if (type == 'C')
+	if (tiles->type == 'C')
 		tiles->var = var % COLLECTIBLE_ALT_NBR;
-	else if (type == 'X')
+	else if (tiles->type == 'X')
 		tiles->var = var % ENEMIES_ALT_NBR;
 	else
-		tile->var = 0;
+		tiles->var = 0;
 	tiles->frame = 0;
 	path = ft_get_path(maps, tiles);
 	if (path != NULL)
@@ -50,14 +50,14 @@ void	ft_free_tiles(t_tiles **tiles)
 	while (tiles_ptr != NULL)
 	{
 		tiles_ptr = tiles_ptr->next;
-		if (tiles->path != NULL)
-			free(tiles->path);
+		if ((*tiles)->path != NULL)
+			free((*tiles)->path);
 		free(*tiles);
 		*tiles = tiles_ptr;
 	}	
 }
 
-static int	*ft_call_init_tiles(t_maps **maps, t_tiles **tiles_ptr, int pos[2])
+static int	ft_call_init_tiles(t_maps **maps, t_tiles **tiles_ptr, int pos[2])
 {
 	t_tiles		*tiles_new;
 	static int	var;
@@ -84,6 +84,7 @@ static int	*ft_call_init_tiles(t_maps **maps, t_tiles **tiles_ptr, int pos[2])
 		(*tiles_ptr)->next = tiles_new;
 		*tiles_ptr = (*tiles_ptr)->next;
 	}
+	return (0);
 }
 
 void	ft_init_tiles(t_maps **maps)
@@ -91,7 +92,7 @@ void	ft_init_tiles(t_maps **maps)
 	t_tiles	*tiles_ptr;
 	int		pos[2];
 
-	tiles_ptr == NULL;
+	tiles_ptr = NULL;
 	pos[1] = 0;
 	while (pos[1] < (*maps)->y_lenght)
 	{
@@ -99,10 +100,9 @@ void	ft_init_tiles(t_maps **maps)
 		while (pos[0] < (*maps)->x_lenght)
 		{
 			if (ft_call_init_tiles(maps, &tiles_ptr, pos) == -1)
-				return (-1);
+				return ;
 			pos[0] += 1;
 		}
 		pos[1] += 1;
 	}
-	return (0);
 }

@@ -6,20 +6,20 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/06 06:44:28 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 07:16:53 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-static int	ft_select_border_wall(t_maps *maps, t_tiles *tiles)
+static char	*ft_select_border_wall(t_maps *maps, t_tiles *tiles)
 {
 	if (tiles->y_pos == maps->y_lenght - 1)
 	{
 		if (tiles->x_pos == 0 || tiles->x_pos == maps->x_lenght - 1)
 			return (strdup(WALL_S));
 		else
-			return (ft_select_wall(maps, tiles))
+			return (ft_select_wall(maps, tiles));
 	}
 	else if (tiles->x_pos == 0)
 		return (strdup(WALL_W));
@@ -44,7 +44,7 @@ static char	*get_str_path_wall(t_maps *maps, t_tiles *tiles)
 		tiles->y_pos == 0 || tiles->y_pos == maps->y_lenght - 1)
 		return (ft_select_border_wall(maps, tiles));
 	else
-		return (ft_select_wall(maps, tiles))
+		return (ft_select_wall(maps, tiles));
 }
 
 static char	*get_str_path(t_tiles *tiles, char *first_part_path)
@@ -52,7 +52,7 @@ static char	*get_str_path(t_tiles *tiles, char *first_part_path)
 	char	*str;
 	char	*str_joined;
 
-	if (tiles->type == C || tiles->type == X)
+	if (tiles->type == 'C' || tiles->type == 'X')
 	{
 		str = ft_itoa(tiles->var);
 		if (str == NULL)
@@ -75,8 +75,6 @@ static char	*get_str_path(t_tiles *tiles, char *first_part_path)
 
 char	*ft_get_path(t_maps *maps, t_tiles *tiles)
 {
-	char *path;
-
 	if (tiles->type == '1')
 		return (get_str_path_wall(maps, tiles));
 	else if (tiles->type == 'P')

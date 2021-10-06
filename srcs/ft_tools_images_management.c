@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 06:49:23 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 07:12:56 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_fill_img(void *mlx, t_tiles **tiles)
 											&img_height);
 }
 
-int	ft_draw_scene(void *mlx, t_maps **maps)
+int	ft_draw_scene(void *mlx, void *mlx_win, t_maps **maps)
 {
 	t_tiles	**tiles_ptr;
 

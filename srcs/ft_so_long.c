@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:03:48 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 07:13:23 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_parsing(t_maps **maps, const char *map_path)
 		ft_error(result);
 	}
 	ft_get_size_map(maps);
-	ft_init_tiles(&maps);
+	ft_init_tiles(maps);
 	if ((*maps)->tiles == NULL)
 	{
 		ft_free_maps(maps);
@@ -45,9 +45,9 @@ int	main(int argc, const char **argv)
 		ft_error("malloc error");
 	ft_parsing(&maps, argv[1]);
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, SIZE_SPRITE * (*maps)->x_lenght, \
-								SIZE_SPRITE * (*maps)->y_lenght, "so_long");
-	if (ft_draw_scene(mlx, maps) != 0)
+	mlx_win = mlx_new_window(mlx, SIZE_SPRITE * maps->x_lenght, \
+								SIZE_SPRITE * maps->y_lenght, "so_long");
+	if (ft_draw_scene(mlx, mlx_win, &maps) != 0)
 	{
 		ft_free_maps(&maps);
 		ft_error("drawing error");
