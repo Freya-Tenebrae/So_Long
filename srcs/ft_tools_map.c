@@ -6,23 +6,11 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 03:17:38 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/06 06:56:19 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
-
-static int	ft_check_if_file_is_ber(const char *path)
-{
-	int		path_len;
-
-	path_len = ft_strlen(path);
-	if (path_len <= 4)
-		return (-1);
-	if (ft_strcmp(&(path[path_len - 4]), ".ber") != 0)
-		return (-1);
-	return (0);
-}
 
 void	ft_free_map(char ***map)
 {
@@ -36,6 +24,18 @@ void	ft_free_map(char ***map)
 	}
 	free(*map);
 	*map = NULL;
+}
+
+static int	ft_check_if_file_is_ber(const char *map_path)
+{
+	int		path_len;
+
+	path_len = ft_strlen(map_path);
+	if (path_len <= 4)
+		return (-1);
+	if (ft_strcmp(&(map_path[path_len - 4]), ".ber") != 0)
+		return (-1);
+	return (0);
 }
 
 static void	ft_add_line_on_map(char ***map, char **line, int n_line, \
@@ -64,18 +64,18 @@ static void	ft_add_line_on_map(char ***map, char **line, int n_line, \
 	line = NULL;
 }
 
-void	ft_get_map(char ***map, const char *path)
+void	ft_get_map(char ***map, const char *map_path)
 {
 	int		fd;
 	int		status_gnl;
 	int		n_line;
 	char	*line;
 
-	fd = open(path, O_RDONLY);
+	fd = open(map_path, O_RDONLY);
 	status_gnl = 1;
 	n_line = 0;
 	line = NULL;
-	if (fd < 0 || ft_check_if_file_is_ber(path) != 0)
+	if (fd < 0 || ft_check_if_file_is_ber(map_path) != 0)
 		ft_error("incorrect file path");
 	while (status_gnl == 1)
 	{
