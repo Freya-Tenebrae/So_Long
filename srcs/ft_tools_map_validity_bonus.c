@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/07 23:30:22 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/08 00:17:44 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static char	*ft_check_map_validity_rectangle(const char **map)
 	}
 	if (n_line < 3)
 		return ("the map is too small");
+	return ("");
 }
 
 static char	*ft_check_map_validity_souronding(const char **map)
@@ -54,6 +55,7 @@ static char	*ft_check_map_validity_souronding(const char **map)
 		}
 		n_line += 1;
 	}
+	return ("");
 }
 
 static char	*ft_check_map_validity_all_actor_are_valid(const char **map)
@@ -73,6 +75,7 @@ static char	*ft_check_map_validity_all_actor_are_valid(const char **map)
 		}
 		n_line += 1;
 	}
+	return ("");
 }
 
 static int	ft_check_map_validity_actor_present(const char **map, \
@@ -121,4 +124,5 @@ char	*ft_check_map_validity(const char **map)
 		return ("a mendatory actor 'Exit' isn't present");
 	if (ft_check_map_validity_actor_present(map, "C") != 0)
 		return ("a mendatory actor 'Collectible' isn't present");
+	return ("");
 }
