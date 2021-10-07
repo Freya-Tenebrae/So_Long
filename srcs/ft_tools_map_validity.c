@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:18:32 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/07 23:25:46 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static char	*ft_check_map_validity_rectangle(const char **map)
 
 	width_map = (int)ft_strlen(map[0]);
 	if (width_map < 3)
-		return("the map is too small");
+		return ("the map is too small");
 	n_line = 1;
 	while (map[n_line] != NULL)
 	{
 		if ((int)ft_strlen(map[n_line]) != width_map)
-			return("the map isn't rectangular");
+			return ("the map isn't rectangular");
 		n_line += 1;
 	}
 	if (n_line < 3)
-		return("the map is too small");
+		return ("the map is too small");
 	return ("");
 }
 
@@ -49,7 +49,7 @@ static char	*ft_check_map_validity_souronding(const char **map)
 				n_char == width_map - 1)
 			{
 				if (map[n_line][n_char] != '1')
-					return("the map isn't sourounded by wall");
+					return ("the map isn't sourounded by wall");
 			}
 			n_char += 1;
 		}
@@ -70,7 +70,7 @@ static char	*ft_check_map_validity_all_actor_are_valid(const char **map)
 		while (map[n_line][n_char] != '\0')
 		{
 			if (ft_strchr("01PCE", map[n_line][n_char]) == NULL)
-				return("an actor (pickup, exit, player, ...) isn't valid");
+				return ("an actor (pickup, exit, player, ...) isn't valid");
 			n_char += 1;
 		}
 		n_line += 1;
@@ -108,7 +108,7 @@ char	*ft_check_map_validity(const char **map)
 	char	*result;
 
 	if (map == NULL)
-		return("the map is empty");
+		return ("the map is empty");
 	result = ft_check_map_validity_rectangle(map);
 	if (ft_strcmp(result, "") != 0)
 		return (result);
@@ -119,10 +119,10 @@ char	*ft_check_map_validity(const char **map)
 	if (ft_strcmp(result, "") != 0)
 		return (result);
 	if (ft_check_map_validity_actor_present(map, "P") != 0)
-		return("a mendatory actor 'Player' isn't present");
+		return ("a mendatory actor 'Player' isn't present");
 	if (ft_check_map_validity_actor_present(map, "E") != 0)
-		return("a mendatory actor 'Exit' isn't present");
+		return ("a mendatory actor 'Exit' isn't present");
 	if (ft_check_map_validity_actor_present(map, "C") != 0)
-		return("a mendatory actor 'Collectible' isn't present");
+		return ("a mendatory actor 'Collectible' isn't present");
 	return ("");
 }
