@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:26:33 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/07 22:30:29 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static t_tiles	*ft_init_tile(t_maps *maps, int var, int pos[2])
 	tiles->y_pos = pos[1];
 	tiles->type = maps->map[tiles->y_pos][tiles->x_pos];
 	if (tiles->type == 'C')
-		tiles->var = var % COLLECTIBLE_ALT_NBR;
+		tiles->var = 1 + var % COLLECTIBLE_ALT_NBR;
 	else if (tiles->type == 'X')
-		tiles->var = var % ENEMIES_ALT_NBR;
+		tiles->var = 1 + var % ENEMIES_ALT_NBR;
 	else
-		tiles->var = 0;
-	tiles->frame = 0;
+		tiles->var = 1;
+	tiles->frame = 1;
 	path = ft_get_path(maps, tiles);
 	if (path != NULL)
 	{

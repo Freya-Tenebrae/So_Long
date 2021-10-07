@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:12:56 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/07 22:18:01 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ static void	ft_fill_img(void *mlx, t_tiles **tiles)
 
 int	ft_draw_scene(void *mlx, void *mlx_win, t_maps **maps)
 {
-	t_tiles	**tiles_ptr;
+	t_tiles	*tiles_ptr;
 
-	tiles_ptr = &((*maps)->tiles);
-	while (*tiles_ptr != NULL)
+	tiles_ptr = (*maps)->tiles;
+	while (tiles_ptr != NULL)
 	{
-		ft_fill_img(mlx, tiles_ptr);
-		mlx_put_image_to_window(mlx, mlx_win, (*tiles_ptr)->img, \
-								SIZE_SPRITE * (*tiles_ptr)->x_pos, \
-								SIZE_SPRITE * (*tiles_ptr)->y_pos);
-		*tiles_ptr = (*tiles_ptr)->next;
+		ft_fill_img(mlx, &tiles_ptr);
+		ft_putstr("path : ");
+		ft_putstr(tiles_ptr->path);
+		ft_putstr("\n");
+		mlx_put_image_to_window(mlx, mlx_win, tiles_ptr->img, SIZE_SPRITE * tiles_ptr->x_pos, SIZE_SPRITE * tiles_ptr->y_pos);
+		tiles_ptr = tiles_ptr->next;
 	}
 	return (0);
 }

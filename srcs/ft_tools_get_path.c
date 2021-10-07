@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/06 07:16:53 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/07 22:49:57 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,19 @@ static char	*ft_select_border_wall(t_maps *maps, t_tiles *tiles)
 			return (ft_select_wall(maps, tiles));
 	}
 	else if (tiles->x_pos == 0)
-		return (strdup(WALL_W));
+	{
+		if (tiles->y_pos == maps->y_lenght - 2)
+			return (strdup(WALL_N));
+		else
+			return (strdup(WALL_W));
+	}
 	else if (tiles->x_pos == maps->x_lenght - 1)
-		return (strdup(WALL_E));
+	{
+		if (tiles->y_pos == maps->y_lenght - 2)
+			return (strdup(WALL_N));
+		else
+			return (strdup(WALL_E));
+	}
 	else if (tiles->y_pos == 0)
 	{
 		if ((tiles->x_pos % 2 == 1))
@@ -50,27 +60,39 @@ static char	*get_str_path_wall(t_maps *maps, t_tiles *tiles)
 static char	*get_str_path(t_tiles *tiles, char *first_part_path)
 {
 	char	*str;
-	char	*str_joined;
+	char	*str_tmp1;
+	char	*str_tmp2;
 
 	if (tiles->type == 'C' || tiles->type == 'X')
 	{
 		str = ft_itoa(tiles->var);
 		if (str == NULL)
 			return (NULL);
-		str_joined = ft_strjoin(first_part_path, str);
+		str_tmp1 = ft_strjoin(first_part_path, str);
 		free(str);
-		if (str_joined == NULL)
+		if (str_tmp1 == NULL)
 			return (NULL);
-		str = ft_strjoin(str_joined, "_");
-		free(str_joined);
+		str = ft_strjoin(str_tmp1, "_");
+		free(str_tmp1);
 	}
 	else
 		str = strdup(first_part_path);
 	if (str == NULL)
 			return (NULL);
-	str_joined = ft_strjoin(str, XPM);
+	str_tmp1 = ft_itoa(tiles->frame);
+	if (str_tmp1 == NULL)
+	{
+		free(str);
+		return (NULL);
+	}
+	str_tmp2 = ft_strjoin(str, str_tmp1);
 	free(str);
-	return (str_joined);
+	free(str_tmp1);
+	if (str == NULL)
+			return (NULL);
+	str_tmp1 = ft_strjoin(str_tmp2, XPM);
+	free(str_tmp2);
+	return (str_tmp1);
 }
 
 char	*ft_get_path(t_maps *maps, t_tiles *tiles)

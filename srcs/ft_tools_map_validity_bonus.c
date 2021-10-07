@@ -6,13 +6,13 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 03:32:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/07 22:53:38 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-static char	ft_check_map_validity_rectangle(const char **map)
+static char	*ft_check_map_validity_rectangle(const char **map)
 {
 	int	width_map;
 	int	n_line;
@@ -31,7 +31,7 @@ static char	ft_check_map_validity_rectangle(const char **map)
 		return("the map is too small");
 }
 
-static char	ft_check_map_validity_souronding(const char **map)
+static char	*ft_check_map_validity_souronding(const char **map)
 {
 	int	width_map;
 	int	n_line;
@@ -56,7 +56,7 @@ static char	ft_check_map_validity_souronding(const char **map)
 	}
 }
 
-static char	ft_check_map_validity_all_actor_are_valid(const char **map)
+static char	*ft_check_map_validity_all_actor_are_valid(const char **map)
 {
 	int	n_line;
 	int	n_char;

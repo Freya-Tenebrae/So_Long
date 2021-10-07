@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:16:36 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/07 22:34:58 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@
 # define PLAYER_IDDLE_PICK "./data/player/cat_iddle_pick_"
 # define PLAYER_GAME_OVER "./data/player/cat_game_over_"
 # define EXIT_MAX_FRAME 12
-# define EXIT "./data/exit/exit.xpm"
-# define EXIT_PLAYER "./data/exit/cat_exit_"
+# define EXIT "./data/exit/exit_"
 # define EXIT_WIN "./data/exit/exit_win_"
 # define COLLECTIBLE_MAX_FRAME 4
 # define COLLECTIBLE_ALT_NBR 4
