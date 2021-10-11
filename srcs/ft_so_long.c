@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:13:23 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/11 14:01:01 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	ft_parsing(t_maps **maps, const char *map_path)
 int	main(int argc, const char **argv)
 {
 	t_maps	*maps;
-	void	*mlx;
-	void	*mlx_win;
 
 	if (argc != 2)
 		ft_error("incorect numbers of arguments");
@@ -44,15 +42,15 @@ int	main(int argc, const char **argv)
 	if (!maps)
 		ft_error("malloc error");
 	ft_parsing(&maps, argv[1]);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, SIZE_SPRITE * maps->x_lenght, \
+	maps->mlx = mlx_init();
+	maps->mlx_win = mlx_new_window(maps->mlx, SIZE_SPRITE * maps->x_lenght, \
 								SIZE_SPRITE * maps->y_lenght, "so_long");
-	if (ft_draw_scene(mlx, mlx_win, &maps) != 0)
+	if (ft_draw_scene(maps->mlx, maps->mlx_win, &maps) != 0)
 	{
 		ft_free_maps(&maps);
 		ft_error("drawing error");
 	}
-	mlx_loop(mlx);
+	mlx_loop(maps->mlx);
 	ft_free_maps(&maps);
 	ft_success();
 }

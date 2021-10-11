@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/07 23:25:10 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:04:00 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ char	*ft_get_path(t_maps *maps, t_tiles *tiles)
 		return (get_str_path(tiles, PLAYER_IDDLE));
 	else if (tiles->type == 'C')
 		return (get_str_path(tiles, COLLECTIBLE));
-	else if (tiles->type == 'E')
-		return (get_str_path(tiles, EXIT));
 	else if (tiles->type == 'X')
 		return (get_str_path(tiles, ENEMIES));
+	else if (tiles->type == 'E')
+		return (ft_strdup(EXIT));
 	else
 		return (ft_strdup(BASIC_TILES));
 }

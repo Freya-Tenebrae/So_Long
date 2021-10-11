@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/07 22:34:58 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:03:35 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@
 # define PLAYER_IDDLE_ALT "./data/player/cat_iddle_alt_"
 # define PLAYER_IDDLE_PICK "./data/player/cat_iddle_pick_"
 # define PLAYER_GAME_OVER "./data/player/cat_game_over_"
-# define EXIT_MAX_FRAME 12
-# define EXIT "./data/exit/exit_"
-# define EXIT_WIN "./data/exit/exit_win_"
+# define PLAYER_EXIT_MAX_FRAME 12
+# define PLAYER_EXIT "./data/player/cat_exit_"
+# define PLAYER_WIN_MAX_FRAME 6
+# define PLAYER_WIN "./data/player/cat_win_"
+# define EXIT "./data/exit.xpm"
 # define COLLECTIBLE_MAX_FRAME 4
 # define COLLECTIBLE_ALT_NBR 4
 # define COLLECTIBLE "./data/collectible/collectible_"
@@ -57,6 +59,9 @@ typedef struct s_maps
 	char				**map;
 	int					x_lenght;
 	int					y_lenght;
+	int					movements;
+	void				*mlx;
+	void				*mlx_win;
 // 	int					endian;
 // 	int					bits_per_pixel;
 	struct s_tiles		*tiles;
@@ -91,6 +96,7 @@ void	ft_free_maps(t_maps **maps);
 char	*ft_select_wall(t_maps *maps, t_tiles *tiles);
 void	ft_free_tiles(t_tiles **tiles);
 void	ft_init_tiles(t_maps **maps);
+int		ft_move(t_maps *maps, int keycode);
 /* ************************************************************************** */
 /*                                    END                                     */
 /* ************************************************************************** */

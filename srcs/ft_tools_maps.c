@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 07:18:52 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/11 14:03:53 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ t_maps	*ft_init_maps(void)
 	maps->map = NULL;
 	maps->x_lenght = 0;
 	maps->y_lenght = 0;
+	maps->mlx = NULL;
+	maps->mlx_win = NULL;
 	maps->tiles = NULL;
+	maps->movements = 0;
 	return (maps);
 }
 
