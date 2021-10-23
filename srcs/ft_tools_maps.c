@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 08:12:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 11:55:29 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_maps	*ft_init_maps(void)
 	maps->collectible_count = 0;
 	maps->status_game = 0;
 	maps->n_frame = 0;
+	maps->enemies = NULL;
 	return (maps);
 }
 
@@ -45,5 +46,7 @@ void	ft_free_maps(t_maps **maps)
 	ft_free_map(&((*maps)->map));
 	if ((*maps)->tiles != NULL)
 		ft_free_tiles(&((*maps)->tiles));
+	if ((*maps)->enemies != NULL)
+		ft_free_enemies(&((*maps)->enemies));
 	free(*maps);
 }

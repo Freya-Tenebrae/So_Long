@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 09:28:52 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 10:15:41 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	ft_draw_scene(t_maps **maps)
 								tiles_ptr->img, \
 								SIZE_SPRITE * tiles_ptr->x_pos, \
 								SIZE_SPRITE * tiles_ptr->y_pos);
+		mlx_destroy_image((*maps)->mlx, tiles_ptr->img);
 		tiles_ptr = tiles_ptr->next;
 	}
 	if ((*maps)->status_game == 1)

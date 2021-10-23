@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 08:58:59 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 12:05:17 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static t_tiles	*ft_init_tile(t_maps *maps, int pos[2])
 	return (ft_init_tile_part_2(maps, tiles));
 }
 
-/* check for alloc a img[] (for frame animation) and free img[]*/
-
 void	ft_free_tiles(t_tiles **tiles)
 {
 	t_tiles	*tiles_ptr;
@@ -78,8 +76,7 @@ static int	ft_call_init_tiles(t_maps **maps, t_tiles **tiles_ptr, int pos[2])
 	tiles_new = ft_init_tile(*maps, pos);
 	if (tiles_new == NULL)
 	{
-		if (*tiles_ptr != NULL)
-			ft_free_maps(maps);
+		ft_free_maps(maps);
 		return (-1);
 	}
 	if (*tiles_ptr == NULL)

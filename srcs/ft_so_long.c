@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 09:14:21 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 13:37:40 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ft_key_hook(int keycode, t_maps **maps)
 	else if ((keycode == 'w' || keycode == 'a' || keycode == 's' || \
 			keycode == 'd') && (*maps)->status_game == 0)
 	{
-		if (ft_move(maps, keycode) == -3)
+		if (ft_move(maps, keycode) == -3 || ft_move_enemies(maps) != 0)
 		{
 			ft_free_maps(maps);
 			ft_error("malloc error");
@@ -74,6 +74,7 @@ static void	ft_parsing(t_maps **maps, const char *map_path)
 		ft_free_maps(maps);
 		ft_error("malloc error");
 	}
+	ft_init_enemies(maps);
 }
 
 int	main(int argc, const char **argv)

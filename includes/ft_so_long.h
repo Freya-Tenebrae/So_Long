@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 09:07:49 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 12:03:37 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,27 @@
 /* ************************************************************************** */
 /*                                  TYPEDEF                                   */
 /* ************************************************************************** */
+typedef struct s_tiles
+{
+	int					x_pos;
+	int					y_pos;
+	char				type;
+	int					var;
+	int					frame;
+	char				*path;
+	void				*img;
+	struct s_tiles		*next;
+}						t_tiles;
+
+typedef struct s_enemies
+{
+	int					x_pos;
+	int					y_pos;
+	int					x_last_pos;
+	int					y_last_pos;
+	struct s_enemies	*next;
+}						t_enemies;
+
 typedef struct s_maps
 {
 	char				**map;
@@ -66,19 +87,8 @@ typedef struct s_maps
 	void				*mlx;
 	void				*mlx_win;
 	struct s_tiles		*tiles;
+	struct s_enemies	*enemies;
 }						t_maps;
-
-typedef struct s_tiles
-{
-	int					x_pos;
-	int					y_pos;
-	char				type;
-	int					var;
-	int					frame;
-	char				*path;
-	void				*img;
-	struct s_tiles		*next;
-}						t_tiles;
 
 /* ************************************************************************** */
 /*                                  FONCTION                                  */
@@ -93,10 +103,13 @@ int		ft_cont_total_collectible(char **map);
 void	ft_get_size_map(t_maps **maps);
 void	ft_init_tiles(t_maps **maps);
 void	ft_free_tiles(t_tiles **tiles);
+void	ft_init_enemies(t_maps **maps);
+void	ft_free_enemies(t_enemies **enemies);
 char	*ft_get_path(t_maps *maps, t_tiles *tiles);
 char	*ft_select_wall(t_maps *maps, t_tiles *tiles);
 int		ft_draw_scene(t_maps **maps);
 int		ft_update_frame(t_maps **maps);
+int		ft_move_enemies(t_maps **maps);
 int		ft_move(t_maps **maps, int keycode);
 void	ft_success(void);
 void	ft_error(char *str);
