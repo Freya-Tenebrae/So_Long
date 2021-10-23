@@ -55,7 +55,5 @@ make bonus
 
 ## To-Do
 
-- ennemy round
-- makefile
+- makefile with object
 - test leaks with valgrind
-- put usleep in bonus (forbidden in subject)

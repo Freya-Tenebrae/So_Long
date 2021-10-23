@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 13:53:02 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 15:07:50 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	ft_swap(t_tiles **tiles_enemies, t_tiles **tiles_dest)
 		return (-1);
 	return (0);
 }
-
 
 static int	ft_moving(t_maps **maps, int pos_x, int pos_y, \
 						t_enemies **enemies_ptr)
@@ -62,26 +61,23 @@ static int	ft_select_movement_p2(t_maps **maps, t_enemies **e_ptr, \
 		(*maps)->map[(*e_ptr)->y_pos + 1][(*e_ptr)->x_pos] == 'X') && \
 		(n_path == 1 || ((*e_ptr)->x_pos != (*e_ptr)->x_last_pos || \
 		(*e_ptr)->y_pos + 1 != (*e_ptr)->y_last_pos)))
-			return (ft_moving(maps, (*e_ptr)->x_pos, (*e_ptr)->y_pos + 1, \
-					e_ptr));
+		return (ft_moving(maps, (*e_ptr)->x_pos, (*e_ptr)->y_pos + 1, e_ptr));
 	else if (((*maps)->map[(*e_ptr)->y_pos][(*e_ptr)->x_pos - 1] == 'x' || \
 		(*maps)->map[(*e_ptr)->y_pos][(*e_ptr)->x_pos - 1] == 'X') && \
 		(n_path == 1 || ((*e_ptr)->x_pos - 1 != (*e_ptr)->x_last_pos || \
 		(*e_ptr)->y_pos != (*e_ptr)->y_last_pos)))
-			return (ft_moving(maps, (*e_ptr)->x_pos - 1, (*e_ptr)->y_pos, \
-					e_ptr));
+		return (ft_moving(maps, (*e_ptr)->x_pos - 1, (*e_ptr)->y_pos, e_ptr));
 	else if (((*maps)->map[(*e_ptr)->y_pos][(*e_ptr)->x_pos + 1] == 'x' || \
 		(*maps)->map[(*e_ptr)->y_pos][(*e_ptr)->x_pos + 1] == 'X') && \
 		(n_path == 1 || ((*e_ptr)->x_pos + 1 != (*e_ptr)->x_last_pos || \
 		(*e_ptr)->y_pos != (*e_ptr)->y_last_pos)))
-			return (ft_moving(maps, (*e_ptr)->x_pos + 1, (*e_ptr)->y_pos, \
-					e_ptr));
+		return (ft_moving(maps, (*e_ptr)->x_pos + 1, (*e_ptr)->y_pos, e_ptr));
 	return (-1);
 }
 
 static int	ft_select_movement(t_maps **maps, t_enemies **e_ptr)
 {
-	int n_path;
+	int	n_path;
 
 	n_path = 0;
 	if ((*maps)->map[(*e_ptr)->y_pos - 1][(*e_ptr)->x_pos] == 'x' || \
@@ -100,10 +96,9 @@ static int	ft_select_movement(t_maps **maps, t_enemies **e_ptr)
 		(*maps)->map[(*e_ptr)->y_pos - 1][(*e_ptr)->x_pos] == 'X') && \
 		(n_path == 1 || ((*e_ptr)->x_pos != (*e_ptr)->x_last_pos || \
 		(*e_ptr)->y_pos - 1 != (*e_ptr)->y_last_pos)))
-			return (ft_moving(maps, (*e_ptr)->x_pos, (*e_ptr)->y_pos - 1, \
-					e_ptr));
+		return (ft_moving(maps, (*e_ptr)->x_pos, (*e_ptr)->y_pos - 1, e_ptr));
 	else
-		return ft_select_movement_p2(maps, e_ptr, n_path);
+		return (ft_select_movement_p2(maps, e_ptr, n_path));
 }
 
 int	ft_move_enemies(t_maps **maps)

@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 12:21:43 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 15:08:20 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_free_enemies(t_enemies **enemies)
 	}	
 }
 
-static int	ft_call_init_enemies(t_maps **maps, t_enemies **enemies_ptr, int pos[2])
+static int	ft_call_init_enemies(t_maps **maps, t_enemies **enemies_ptr, \
+								int pos[2])
 {
 	t_enemies		*enemies_new;
 

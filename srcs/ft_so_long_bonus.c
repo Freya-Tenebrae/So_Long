@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_so_long.c                                       :+:      :+:    :+:   */
+/*   ft_so_long_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 14:59:29 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 14:48:50 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
+
+static int	ft_render_next_frame(t_maps **maps)
+{
+	usleep(80000);
+	if (ft_update_frame(maps) != 0)
+	{
+		ft_free_maps(maps);
+		ft_error("malloc error");
+	}
+	if (ft_draw_scene(maps) != 0)
+	{
+		ft_free_maps(maps);
+		ft_error("drawing error");
+	}
+	return (0);
+}
 
 static int	ft_key_hook(int keycode, t_maps **maps)
 {
@@ -22,7 +38,7 @@ static int	ft_key_hook(int keycode, t_maps **maps)
 	else if ((keycode == 'w' || keycode == 'a' || keycode == 's' || \
 			keycode == 'd') && (*maps)->status_game == 0)
 	{
-		if (ft_move(maps, keycode) == -3)
+		if (ft_move(maps, keycode) == -3 || ft_move_enemies(maps) != 0)
 		{
 			ft_free_maps(maps);
 			ft_error("malloc error");
@@ -58,6 +74,7 @@ static void	ft_parsing(t_maps **maps, const char *map_path)
 		ft_free_maps(maps);
 		ft_error("malloc error");
 	}
+	ft_init_enemies(maps);
 }
 
 int	main(int argc, const char **argv)
@@ -79,6 +96,7 @@ int	main(int argc, const char **argv)
 		ft_error("drawing error");
 	}
 	mlx_key_hook(maps->mlx_win, ft_key_hook, &maps);
+	mlx_loop_hook(maps->mlx, ft_render_next_frame, &maps);
 	mlx_loop(maps->mlx);
 	ft_free_maps(&maps);
 	ft_success();
