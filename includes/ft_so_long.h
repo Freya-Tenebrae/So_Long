@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/11 16:03:35 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 05:02:21 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_maps
 	int					x_lenght;
 	int					y_lenght;
 	int					movements;
+	int					colectible_count;
+	int					colectible_total;
 	void				*mlx;
 	void				*mlx_win;
 // 	int					endian;
@@ -96,7 +98,7 @@ void	ft_free_maps(t_maps **maps);
 char	*ft_select_wall(t_maps *maps, t_tiles *tiles);
 void	ft_free_tiles(t_tiles **tiles);
 void	ft_init_tiles(t_maps **maps);
-int		ft_move(t_maps *maps, int keycode);
+int		ft_move(t_maps **maps, int keycode);
 /* ************************************************************************** */
 /*                                    END                                     */
 /* ************************************************************************** */

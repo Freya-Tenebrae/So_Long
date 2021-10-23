@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/11 14:03:53 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 03:11:48 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_maps	*ft_init_maps(void)
 	maps->mlx_win = NULL;
 	maps->tiles = NULL;
 	maps->movements = 0;
+	maps->colectible_total = 0;
+	maps->colectible_count = 0;
 	return (maps);
 }
 
