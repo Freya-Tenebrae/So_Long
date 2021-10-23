@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/11 14:05:07 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:28:52 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,44 @@ static void	ft_fill_img(void *mlx, t_tiles **tiles)
 											&img_height);
 }
 
-int	ft_draw_scene(void *mlx, void *mlx_win, t_maps **maps)
+static int	ft_putnbr_to_win(t_maps **maps)
+{
+	char	*char_to_put;
+
+	char_to_put = ft_itoa((*maps)->movements);
+	if (char_to_put == NULL)
+		return (-1);
+	mlx_string_put((*maps)->mlx, (*maps)->mlx_win, 20, SIZE_SPRITE / 2, \
+					mlx_get_color_value((*maps)->mlx, COLOR_TEXT), \
+					char_to_put);
+	free (char_to_put);
+	return (0);
+}
+
+int	ft_draw_scene(t_maps **maps)
 {
 	t_tiles	*tiles_ptr;
 
 	tiles_ptr = (*maps)->tiles;
 	while (tiles_ptr != NULL)
 	{
-		ft_fill_img(mlx, &tiles_ptr);
-		mlx_put_image_to_window(mlx, mlx_win, tiles_ptr->img, \
+		ft_fill_img((*maps)->mlx, &tiles_ptr);
+		mlx_put_image_to_window((*maps)->mlx, (*maps)->mlx_win, \
+								tiles_ptr->img, \
 								SIZE_SPRITE * tiles_ptr->x_pos, \
 								SIZE_SPRITE * tiles_ptr->y_pos);
 		tiles_ptr = tiles_ptr->next;
 	}
-	return (0);
+	if ((*maps)->status_game == 1)
+		mlx_string_put((*maps)->mlx, (*maps)->mlx_win, \
+						(SIZE_SPRITE * (*maps)->x_lenght) / 2, \
+						SIZE_SPRITE * ((*maps)->y_lenght / 2), \
+						mlx_get_color_value((*maps)->mlx, COLOR_TEXT), \
+						"GAME OVER");
+	else if ((*maps)->status_game == 2 || (*maps)->status_game == 3)
+		mlx_string_put((*maps)->mlx, (*maps)->mlx_win, \
+						(SIZE_SPRITE * (*maps)->x_lenght) / 2, \
+						SIZE_SPRITE * ((*maps)->y_lenght / 2), \
+						mlx_get_color_value((*maps)->mlx, COLOR_TEXT), "WIN");
+	return (ft_putnbr_to_win(maps));
 }

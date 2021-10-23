@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 14:06:56 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 05:02:21 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:07:49 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 /*                                   DEFINE                                   */
 /* ************************************************************************** */
 # define SIZE_SPRITE 64
+# define COLOR_TEXT 15945773
 # define BASIC_TILES "./data/basic_tile.xpm"
 # define WALL_TO_DEFINE "./data/wall/wall_"
 # define WALL_S "./data/wall/wall_s.xpm"
@@ -35,8 +36,6 @@
 # define WALL_N_V1 "./data/wall/wall_n_bricked_window.xpm"
 # define PLAYER_MAX_FRAME 8
 # define PLAYER_IDDLE "./data/player/cat_iddle_"
-# define PLAYER_IDDLE_ALT "./data/player/cat_iddle_alt_"
-# define PLAYER_IDDLE_PICK "./data/player/cat_iddle_pick_"
 # define PLAYER_GAME_OVER "./data/player/cat_game_over_"
 # define PLAYER_EXIT_MAX_FRAME 12
 # define PLAYER_EXIT "./data/player/cat_exit_"
@@ -60,12 +59,12 @@ typedef struct s_maps
 	int					x_lenght;
 	int					y_lenght;
 	int					movements;
-	int					colectible_count;
-	int					colectible_total;
+	int					collectible_count;
+	int					collectible_total;
+	int					status_game;
+	int					n_frame;
 	void				*mlx;
 	void				*mlx_win;
-// 	int					endian;
-// 	int					bits_per_pixel;
 	struct s_tiles		*tiles;
 }						t_maps;
 
@@ -85,20 +84,22 @@ typedef struct s_tiles
 /*                                  FONCTION                                  */
 /* ************************************************************************** */
 int		main(int argc, const char **argv);
+t_maps	*ft_init_maps(void);
+void	ft_free_maps(t_maps **maps);
+void	ft_get_map(char ***map, const char *path);
+void	ft_free_map(char ***map);
+char	*ft_check_map_validity(const char **map);
+int		ft_cont_total_collectible(char **map);
+void	ft_get_size_map(t_maps **maps);
+void	ft_init_tiles(t_maps **maps);
+void	ft_free_tiles(t_tiles **tiles);
+char	*ft_get_path(t_maps *maps, t_tiles *tiles);
+char	*ft_select_wall(t_maps *maps, t_tiles *tiles);
+int		ft_draw_scene(t_maps **maps);
+int		ft_update_frame(t_maps **maps);
+int		ft_move(t_maps **maps, int keycode);
 void	ft_success(void);
 void	ft_error(char *str);
-char	*ft_get_path(t_maps *maps, t_tiles *tiles);
-int		ft_draw_scene(void *mlx, void *mlx_win, t_maps **maps);
-void	ft_free_map(char ***map);
-void	ft_get_map(char ***map, const char *path);
-char	*ft_check_map_validity(const char **map);
-t_maps	*ft_init_maps(void);
-void	ft_get_size_map(t_maps **maps);
-void	ft_free_maps(t_maps **maps);
-char	*ft_select_wall(t_maps *maps, t_tiles *tiles);
-void	ft_free_tiles(t_tiles **tiles);
-void	ft_init_tiles(t_maps **maps);
-int		ft_move(t_maps **maps, int keycode);
 /* ************************************************************************** */
 /*                                    END                                     */
 /* ************************************************************************** */

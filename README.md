@@ -27,29 +27,21 @@ for advenced So_Long :
 make bonus
 ```
 
-> advenced So_Long have some improvement : a multi level management, and two types of ennemy (static or followint a predeterminated path).
+> advenced So_Long have some ""
 
 ### Exemple of uses
 
 #### So_Long
 
-exemple of uses
-
 ```shell
 ./so_long maps/basic_maps/basic_6x14.ber
 ```
 
-(visual will come soon)
-
 #### Bonus
 
 ```shell
-./so_long maps/basic_maps/generic_adventure_1.ber maps/basic_maps/generic_adventure_2.ber \
-maps/basic_maps/generic_adventure_3.ber maps/basic_maps/generic_adventure_4.ber \
-maps/basic_maps/generic_adventure_5.ber
+./so_long maps/basic_maps/generic_adventure_1.ber
 ```
-
-(visual will come soon)
 
 ## Credits
 
@@ -63,9 +55,5 @@ maps/basic_maps/generic_adventure_5.ber
 
 ## To-Do
 
-- [x] compilation
-- [x] map parsing
-- [ ] graphic part
-- [ ] ennemy round
-- [ ] movement count
-- [ ] GUI
+- ennemy round & ennemy collision
+- leaks

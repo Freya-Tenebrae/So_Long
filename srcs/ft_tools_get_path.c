@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 17:44:28 by celia             #+#    #+#             */
-/*   Updated: 2021/10/11 16:04:00 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 08:16:03 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,14 @@ char	*ft_get_path(t_maps *maps, t_tiles *tiles)
 {
 	if (tiles->type == '1')
 		return (get_str_path_wall(maps, tiles));
-	else if (tiles->type == 'P')
+	else if (tiles->type == 'P' && maps->status_game == 0)
 		return (get_str_path(tiles, PLAYER_IDDLE));
+	else if (tiles->type == 'P' && maps->status_game == 1)
+		return (get_str_path(tiles, PLAYER_GAME_OVER));
+	else if (tiles->type == 'P' && maps->status_game == 2)
+		return (get_str_path(tiles, PLAYER_EXIT));
+	else if (tiles->type == 'P' && maps->status_game == 3)
+		return (get_str_path(tiles, PLAYER_WIN));
 	else if (tiles->type == 'C')
 		return (get_str_path(tiles, COLLECTIBLE));
 	else if (tiles->type == 'X')

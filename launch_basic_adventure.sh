@@ -1,1 +1,0 @@
-./so_long_bonus maps/advanced_map/generic_adventure_1.ber

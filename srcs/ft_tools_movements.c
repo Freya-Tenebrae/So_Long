@@ -6,28 +6,28 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/23 06:20:15 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:32:58 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
 
-static void	ft_get_player_pos(t_tiles *tiles, int (*pos)[2])
+static void	ft_get_player_pos(t_maps **maps, int (*pos)[2])
 {
 	t_tiles	*tmp_tiles;
 
-	tmp_tiles = tiles;
+	tmp_tiles = (*maps)->tiles;
 	while (tmp_tiles->type != 'P')
 		tmp_tiles = tmp_tiles->next;
 	(*pos)[0] = tmp_tiles->x_pos;
 	(*pos)[1] = tmp_tiles->y_pos;
 }
 
-static int	ft_can_move(t_tiles *tiles, int pos_x, int pos_y, int keycode)
+static int	ft_can_move(t_maps **maps, int pos_x, int pos_y, int keycode)
 {
 	t_tiles	*tmp_tiles;
 
-	tmp_tiles = tiles;
+	tmp_tiles = (*maps)->tiles;
 	if (keycode == 'w')
 		pos_y -= 1;
 	else if (keycode == 'a')
@@ -40,14 +40,15 @@ static int	ft_can_move(t_tiles *tiles, int pos_x, int pos_y, int keycode)
 		tmp_tiles = tmp_tiles->next;
 	if (tmp_tiles->type == 'X')
 		return (-2);
-	if (tmp_tiles->type == '1')
-		return (-1);
 	if (tmp_tiles->type == '0')
 		return (0);
 	if (tmp_tiles->type == 'C')
 		return (1);
-	if (tmp_tiles->type == 'E')
+	if (tmp_tiles->type == 'E' && \
+		(*maps)->collectible_count == (*maps)->collectible_total)
 		return (2);
+	else
+		return (-1);
 }
 
 static int	ft_swap(t_tiles **tiles_player, t_tiles **tiles_dest)
@@ -55,6 +56,7 @@ static int	ft_swap(t_tiles **tiles_player, t_tiles **tiles_dest)
 	(*tiles_dest)->type = (*tiles_player)->type;
 	(*tiles_dest)->frame = (*tiles_player)->frame;
 	(*tiles_dest)->var = (*tiles_player)->var;
+	free((*tiles_dest)->path);
 	(*tiles_dest)->path = (*tiles_player)->path;
 	(*tiles_player)->type = '0';
 	(*tiles_player)->frame = 0;
@@ -65,13 +67,13 @@ static int	ft_swap(t_tiles **tiles_player, t_tiles **tiles_dest)
 	return (0);
 }
 
-static int	ft_moving(t_tiles *tiles, int pos_x, int pos_y, int keycode)
+static int	ft_moving(t_maps **maps, int pos_x, int pos_y, int keycode)
 {
 	t_tiles	*tiles_player;
 	t_tiles	*tiles_dest;
 
-	tiles_player = tiles;
-	tiles_dest = tiles;
+	tiles_player = (*maps)->tiles;
+	tiles_dest = (*maps)->tiles;
 	while (tiles_player->x_pos != pos_x || tiles_player->y_pos != pos_y)
 		tiles_player = tiles_player->next;
 	if (keycode == 'w')
@@ -94,15 +96,25 @@ int	ft_move(t_maps **maps, int keycode)
 {
 	int	pos[2];
 	int	res;
-	ft_get_player_pos((*maps)->tiles, &pos);
-	res = ft_can_move((*maps)->tiles, pos[0], pos[1], keycode);
-					ft_putstr_fd("res : ", 1);
-					ft_putnbr_fd(res, 1);
-					ft_putstr_fd(".\n", 1);
+
+	ft_get_player_pos(maps, &pos);
+	res = ft_can_move(maps, pos[0], pos[1], keycode);
+	if (res == -2)
+	{
+		(*maps)->status_game = 1;
+		(*maps)->n_frame = 0;
+	}
+	else if (res == 1)
+		(*maps)->collectible_count += 1;
+	else if (res == 2)
+	{
+		(*maps)->status_game = 2;
+		(*maps)->n_frame = 0;
+	}
 	if (res >= 0 && res <= 2)
 	{
 		(*maps)->movements += 1;
-		if (ft_moving((*maps)->tiles, pos[0], pos[1], keycode) != 0)
+		if (ft_moving(maps, pos[0], pos[1], keycode) != 0)
 			return (-3);
 	}
 	return (res);

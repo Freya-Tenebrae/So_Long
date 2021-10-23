@@ -6,11 +6,33 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/06 06:56:19 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:12:04 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_so_long.h"
+
+int	ft_cont_total_collectible(char **map)
+{
+	int	n_line;
+	int	n_char;
+	int	n_collectible;
+
+	n_line = 0;
+	n_collectible = 0;
+	while (map[n_line] != NULL)
+	{
+		n_char = 0;
+		while (map[n_line][n_char] != '\0')
+		{
+			if (map[n_line][n_char] == 'C')
+				n_collectible += 1;
+			n_char += 1;
+		}
+		n_line += 1;
+	}
+	return (n_collectible);
+}
 
 void	ft_free_map(char ***map)
 {

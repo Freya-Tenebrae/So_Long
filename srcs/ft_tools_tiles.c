@@ -6,7 +6,7 @@
 /*   By: cmaginot <cmaginot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 15:27:34 by cmaginot          #+#    #+#             */
-/*   Updated: 2021/10/08 00:02:28 by cmaginot         ###   ########.fr       */
+/*   Updated: 2021/10/23 08:58:59 by cmaginot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ static t_tiles	*ft_init_tile(t_maps *maps, int pos[2])
 		return (NULL);
 	tiles->x_pos = pos[0];
 	tiles->y_pos = pos[1];
-	tiles->type = maps->map[tiles->y_pos][tiles->x_pos];
+	if (maps->map[tiles->y_pos][tiles->x_pos] == 'x')
+		tiles->type = '0';
+	else
+		tiles->type = maps->map[tiles->y_pos][tiles->x_pos];
 	if (tiles->type == 'C')
 		tiles->var = 1 + var++ % COLLECTIBLE_ALT_NBR;
 	else if (tiles->type == 'X')
