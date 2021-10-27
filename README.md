@@ -1,12 +1,12 @@
 # So_Long
 
-Ce dépôt contiens ma solution au projet `Push_swap` de 42 (Paris).
-
-This Repositorie contains my solution to the project `Push_swap` of 42 (Paris).
+This Repositorie contains my solution to the project `So_Long` of 42 (Paris).
 
 [![jaeskim's 42 stats](https://badge42.herokuapp.com/api/stats/cmaginot?cursus=42cursus&privacyName=true)](https://github.com/JaeSeoKim/badge42)
 
 [![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/cmaginot/so_long)](https://github.com/JaeSeoKim/badge42)
+
+> This project only wort on linux (tested on Ubuntu 21.04)
 
 ## Using So_Long
 
@@ -27,7 +27,7 @@ for advenced So_Long :
 make bonus
 ```
 
-> advenced So_Long have some ""
+> the advanced version of So_Long supports the presence of enemies on the map, and manages animated sprites.
 
 ### Exemple of uses
 
@@ -56,4 +56,5 @@ make bonus
 ## To-Do
 
 - makefile with object
+- close management ?
 - test leaks with valgrind
