@@ -39,6 +39,13 @@ static int	ft_key_hook(int keycode, t_maps **maps)
 	return (0);
 }
 
+static int	ft_close_hook(t_maps **maps)
+{
+	ft_free_maps(maps);
+	ft_success();
+	return (0);
+}
+
 static void	ft_parsing(t_maps **maps, const char *map_path)
 {
 	char	*result;
@@ -79,8 +86,8 @@ int	main(int argc, const char **argv)
 		ft_error("drawing error");
 	}
 	mlx_key_hook(maps->mlx_win, ft_key_hook, &maps);
+	mlx_hook(maps->mlx_win, 17, 1L << 17, ft_close_hook, &maps);
 	mlx_loop(maps->mlx);
-	ft_free_maps(&maps);
-	ft_success();
+	ft_error("mlx_loop stoped working unexpectedly");
 	return (0);
 }
