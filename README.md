@@ -52,9 +52,3 @@ make bonus
 >Witches	: [Witches pack](https://9e0.itch.io/witches-pack)  by 9e0
 
 >Pickup	: [32x32 in game items asset pack](https://beyonderboy.itch.io/32x32-in-game-items-asset-pack)  by beyonderboy
-
-## To-Do
-
-- makefile with object
-- close management ?
-- test leaks with valgrind
