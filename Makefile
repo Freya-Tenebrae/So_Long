@@ -39,14 +39,9 @@ SRCS_BONUS=$(addprefix ${FOLDER}/, \
 	ft_tools_tiles.c\
 	ft_tools_update_frame.c)
 OBJS=$(SRCS:.c=.o)
-OBJS_BONUS=$(SRCS_BOUNS:.c=.o)
+OBJS_BONUS=$(SRCS_BONUS:.c=.o)
 
-INCLUDES=$(addprefix includes/, \
-	ft_so_long.h\
-	gnl/get_next_line.h\
-	libft/libft.h\
-	mlx/mlx.h\
-	mlx/mlx_int.h)
+INCLUDES=includes
 FOLDER=srcs
 
 NAME_LIBFT=libft
@@ -55,7 +50,7 @@ LIBFT=includes/libft
 GNL=includes/gnl
 MLX=includes/mlx
 
-CC=gcc -g
+CC=clang -g
 CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
 CMLXFLAGS= -L/usr/lib -lXext -lX11 -L$(MLX) -lm -lz
 RM=rm -f
@@ -64,22 +59,20 @@ all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
-$(NAME): #$(OBJS)
+$(NAME): $(OBJS)
 	make -C $(LIBFT) bonus
 	make -C $(GNL)
 	make -C $(MLX)
-	$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) includes/libft/libft.a includes/gnl/get_next_line.a includes/mlx/libmlx_Linux.a $(CMLXFLAGS) -o $@
-#	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(CMLXFLAGS) $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+	$(CC) $(CFLAGS) -o $@ $^ $(CMLXFLAGS) $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
 
-$(NAME_BONUS): #$(OBJS_BONUS)
+$(NAME_BONUS): $(OBJS_BONUS)
 	make -C $(LIBFT) bonus
 	make -C $(GNL)
 	make -C $(MLX)
-	$(CC) $(CFLAGS) $(SRCS_BONUS) $(INCLUDES) includes/libft/libft.a includes/gnl/get_next_line.a includes/mlx/libmlx_Linux.a $(CMLXFLAGS) -o $@
-#	$(CC) $(CFLAGS) -o $@ $^ $(CMLXFLAGS) $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
+	$(CC) $(CFLAGS) -o $@ $^ $(CMLXFLAGS) $(LIBFT)/libft.a $(GNL)/get_next_line.a $(MLX)/libmlx_Linux.a
 
-#%.o: %.c
-#	$(CC) $(CFLAGS) -o $@ -c $<
+%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $< -I $(INCLUDES)
 
 clean:
 	make clean -C $(LIBFT)
