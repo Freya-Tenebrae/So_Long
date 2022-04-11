@@ -2,9 +2,9 @@
 
 This Repositorie contains my solution to the project `So_Long` of 42 (Paris).
 
-[![jaeskim's 42 stats](https://badge42.herokuapp.com/api/stats/cmaginot?cursus=42cursus&privacyName=true)](https://github.com/JaeSeoKim/badge42)
+[![cmaginot's 42 stats](https://badge42.vercel.app/api/v2/cl1s5sord008509mlo7xr33zy/stats?cursusId=21&coalitionId=45)](https://github.com/JaeSeoKim/badge42)
 
-[![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/cmaginot/so_long)](https://github.com/JaeSeoKim/badge42)
+[![cmaginot's 42 so_long Score](https://badge42.vercel.app/api/v2/cl1s5sord008509mlo7xr33zy/project/2342860)](https://github.com/JaeSeoKim/badge42)
 
 > This project only wort on linux (tested on Ubuntu 21.04)
 
